@@ -3,7 +3,9 @@ import { useFonts, Nunito_400Regular, Nunito_700Bold} from '@expo-google-fonts/n
 import theme from './src/theme/';
 import { StatusBar } from "react-native";
 
-import { Home } from '@screens/Home';
+// import { Home } from '@screens/Home';
+import { New } from '@screens/New';
+
 import { Loading } from '@components/Loading';
 
 
@@ -18,7 +20,8 @@ export default function App() {
         backgroundColor="transparent" 
         translucent
      /> 
-     { fontsLoaded ? <Home /> : <Loading/> }
-    </ThemeProvider>
+     {/* { fontsLoaded ? <Home /> : <Loading/> } */}
+     { fontsLoaded ? <New /> : <Loading/> }
+     </ThemeProvider>
   )
 }
