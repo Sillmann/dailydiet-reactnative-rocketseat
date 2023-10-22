@@ -4,7 +4,8 @@ import theme from './src/theme/';
 import { StatusBar } from "react-native";
 
 // import { Home } from '@screens/Home';
-import { New } from '@screens/New';
+// import { Sobad } from '@screens/Sobad';
+import { Routes } from './src/routes';
 
 import { Loading } from '@components/Loading';
 
@@ -21,7 +22,7 @@ export default function App() {
         translucent
      /> 
      {/* { fontsLoaded ? <Home /> : <Loading/> } */}
-     { fontsLoaded ? <New /> : <Loading/> }
+     { fontsLoaded ? <Routes /> : <Loading/> }
      </ThemeProvider>
   )
 }

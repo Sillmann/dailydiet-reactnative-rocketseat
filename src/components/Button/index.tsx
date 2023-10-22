@@ -4,9 +4,11 @@ type Props = {
   oTexto: string;
 }  
 
-export function Button({ oTexto }: Props ){
+export function Button({ oTexto, ...rest }: Props ){
   return(
-    <Container>
+    <Container
+      {...rest}
+    >
       <ButtonTexto>
          {oTexto}
       </ButtonTexto>

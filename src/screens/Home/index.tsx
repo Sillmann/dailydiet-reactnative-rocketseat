@@ -1,11 +1,16 @@
 import { Text, View, SectionList } from 'react-native';
 import { useState } from 'react';
+import { Alert } from 'react-native';
 
 import { Container, ContainerRefeicoes, Title, Title2, ContainerListarRefeicoes, DataRefeicao } from './styles';
 import { Header } from '@components/Header';
 import { Info } from '@components/Info';
 import { Button } from '@components/Button';
 import { CardListRefeicoes } from '@components/CardListRefeicoes';
+import { CardListRefeicoesData } from "@components/CardListRefeicaoData";
+
+
+import { useNavigation } from '@react-navigation/native';
 
 const dadosRefeicoes = [
     {
@@ -46,8 +51,16 @@ const dadosRefeicoes = [
     }
   ];
 
+ 
+export function Home(props) {
 
-export function Home() {
+  const navigation = useNavigation();
+
+  function handleNew(){
+    props.navigation.navigate('new');
+  }
+
+
   return (
     <Container>
 
@@ -66,12 +79,15 @@ export function Home() {
 
       <Button
         oTexto="+ Nova Refeição"
+        onPress={handleNew}
       />
 
 
       </ContainerRefeicoes>
 
-      <ContainerListarRefeicoes>
+      <CardListRefeicoesData /> 
+
+      {/* <ContainerListarRefeicoes>
         <SectionList 
           sections={dadosRefeicoes}
           keyExtractor={(item, index) => item.hora + item.refeicao + index}
@@ -88,7 +104,7 @@ export function Home() {
           showsVerticalScrollIndicator={false}
           stickySectionHeadersEnabled={false}
         />
-      </ContainerListarRefeicoes>
+      </ContainerListarRefeicoes> */}
 
       
       
