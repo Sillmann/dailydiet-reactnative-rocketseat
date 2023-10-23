@@ -4,65 +4,51 @@ import styled, {css} from "styled-components/native";
 
 import { ArrowLeft } from 'phosphor-react-native';
 
-export type cardEstatisticaStyleIconeVoltarProps = "PRIMARY" | "SECONDARY" | "GRAY";
+export type cardEstatisticaStyleIconeVoltarProps = "PRIMARY" | "SECONDARY";
 
 type Props = {
   type: cardEstatisticaStyleIconeVoltarProps;
 }
 
 
-export const Container = styled.TouchableOpacity<Props>`
+export const Container = styled.View<Props>`
   width: 100%;
-  height: 132px;
-  background-color: ${({theme, type}) => type === 'PRIMARY' ? theme.COLORS.BRAND.GREEN['LIGHT'] : type === 'SECONDARY' ? theme.COLORS.BRAND.RED['LIGHT'] : theme.COLORS.BASE.GRAY[500]};  
-  top: 0;
-  
+  height: 180px;
+  background-color: ${({theme, type}) => type === 'PRIMARY' ? theme.COLORS.BRAND.GREEN['LIGHT'] : theme.COLORS.BRAND.RED['LIGHT']};  
+  flex-direction: column; 
   `;
 
 export const AreaSegura = styled(SafeAreaView)`
-  height: 132px;
-  flex-direction: row; 
-  margin-top: 20px;
-  /* justify-items: center; */
-
+  flex: 1;
+  height: 150px;
 `;
 
 export const BackButton = styled.TouchableOpacity`
-  position: absolute;
-  height: 132px;
+  flex: 1;
   width: 50px;
-  align-items: center;
-  /* background-color: blue; */
-  top: 0;
-  left: 0;
-  margin-top: -20px;
-
-  
-  
 `;
 
 export const IconArrowLeft = styled(ArrowLeft).attrs<Props>(({ theme, type }) => ({
   size: 32,
-  color: type === 'PRIMARY' ? theme.COLORS.BRAND.GREEN['DARK'] : type === 'SECONDARY' ? theme.COLORS.BRAND.RED['DARK'] : theme.COLORS.BASE.GRAY[200]
+  color: type === 'PRIMARY' ? theme.COLORS.BRAND.GREEN['DARK'] : theme.COLORS.BRAND.RED['DARK']
 }))`
-  //position: absolute;
-  left: 9px;
-  /* top: 40px; */
+  position: absolute;
+  left: 24px;
+  top: 40px;
   width: 24px;
   height: 24px;
 `;
 
 export const DivTexts = styled.View`
-  
   flex: 1;
   align-items: center;
-  margin-left:  -50px;
+  justify-content: center;
 `;
 
 export const TextPercentagem = styled.Text`
   ${({theme}) => css`
     font-family: ${theme.FONT_FAMILY.BOLD};
-    font-size: ${theme.FONT_SIZE.TITLE_M}px;
+    font-size: ${theme.FONT_SIZE.TITLE_G}px;
     color: ${theme.COLORS.BASE.GRAY[100]};
   `};  
   line-height: 41px

@@ -1,2 +1,6 @@
-const REFEICAO_COLLECTION = '@daily-diet:refeicoes';
-export { REFEICAO_COLLECTION }
+const REFEICOES_COLLECTION = '@dailyDiet:refeicoes';
+const SEQUENCIADENTRO_COLLECTION = '@dailyDiet:sequencia';
+const IDENTIFICADOR_COLLECTION = '@dailyDiet:idrefeicao';
+
+
+export { REFEICOES_COLLECTION, SEQUENCIADENTRO_COLLECTION, IDENTIFICADOR_COLLECTION };

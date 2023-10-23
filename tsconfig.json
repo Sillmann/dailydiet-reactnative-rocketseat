@@ -5,19 +5,28 @@
     "baseUrl": "./",
     "paths": {
       "@assets/*": [
-        "./src/assets"
+        "./src/assets/*"
       ],
       "@components/*": [
-        "./src/components"
+        "./src/components/*"
+      ],
+      "@views/*": [
+        "./src/views/*"
+      ],
+      "@routes/*": [
+        "./src/routes/*"
       ],
       "@screens/*": [
-        "./src/screens"
+        "./src/screens/*"
       ],
       "@storage/*": [
-        "./src/storage"
+        "./src/storage/*"
       ],
       "@utils/*": [
-        "./src/utils"
+        "./src/utils/*"
+      ],
+      "@theme/*": [
+        "./src/theme/*"
       ],
     }
   }

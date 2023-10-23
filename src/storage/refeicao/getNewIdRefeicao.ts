@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { REFEICAO_COLLECTION } from "@storage/storageConfig";
+import { IDENTIFICADOR_COLLECTION } from "@storage/storageConfig";
 
 type IdProps = {  
   id: number
@@ -7,7 +7,7 @@ type IdProps = {
 
 export async function getNewIdRefeicao(){
   try {
-    const idStorage = await AsyncStorage.getItem(REFEICAO_COLLECTION);
+    const idStorage = await AsyncStorage.getItem(IDENTIFICADOR_COLLECTION);
     // console.log('idStorrage', idStorage);
     const storage : IdProps = idStorage ? JSON.parse(idStorage) : {id: 0};
     // console.log('storage', storage);

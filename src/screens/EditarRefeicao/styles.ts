@@ -102,7 +102,7 @@ export const BtnAddRefeicao = styled.TouchableOpacity`
   height: 50px;
   width: 327px;
   background-color: ${({theme}) => theme.COLORS.BASE.GRAY[200]};
-  margin-bottom: 40px;
+  margin-bottom: 35px;
   align-items: center;
   justify-content: center;
   flex-direction: row;

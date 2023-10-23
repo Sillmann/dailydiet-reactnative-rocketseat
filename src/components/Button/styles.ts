@@ -7,7 +7,7 @@ export const Container = styled(TouchableOpacity)`
   min-height: 56px;
   max-height: 56px;
 
-  background-color: ${({ theme }) => theme.COLORS.GRAY_200};
+  background-color: ${({ theme }) => theme.COLORS.BASE.GRAY[200]};
 
   border-radius: 6px;
 
@@ -17,7 +17,7 @@ export const Container = styled(TouchableOpacity)`
   width: 327px;
 `
 export const ButtonTexto = styled.Text`
-  color: ${({ theme })=>theme.COLORS.WHITE};
-  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+  color: ${({ theme })=>theme.COLORS.BASE.WHITE};
+  font-size: ${({ theme }) => theme.FONT_SIZE.TITLE_S}px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
 `
