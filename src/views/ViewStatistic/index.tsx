@@ -1,13 +1,12 @@
 import { TouchableOpacityProps, View } from 'react-native';
-import { Container, IconArrowUpRight, TextPercentagem, DivTexts, TextMensagem, cardEstatisticaIconeStyleProps } from "./styles";
-
+import { Container, IconArrowUpRight, TextPercentagem, DivTexts, TextMensagem, viewStatisticStyleProps } from "./styles";
 
 type Props = TouchableOpacityProps & {
-  type?: cardEstatisticaIconeStyleProps;
+  type?: viewStatisticStyleProps;
   percentagem: number;
 }
 
-export function CardEstatisticaIcone({percentagem, type = 'PRIMARY', ...rest}: Props){
+export function ViewStatistic({percentagem, type = 'PRIMARY', ...rest}: Props){
   
   return (
     <Container type={type} {...rest}>

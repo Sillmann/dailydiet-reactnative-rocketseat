@@ -1,7 +1,7 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { refeicoesGetAll } from "@storage/refeicao/refeicaoGetAll";
-import { IDENTIFICADOR_COLLECTION, REFEICOES_COLLECTION } from "@storage/storageConfig";
+// import { IDENTIFICADOR_COLLECTION, REFEICOES_COLLECTION } from "@storage/storageConfig";
 import { TouchableOpacityProps, ViewProps } from "react-native";
 import { Container, LineVertical, StatusRefeicao, statusRefeicaoStyleProps, TextHora, TextNomeRefeicao } from "./style";
 
@@ -13,7 +13,7 @@ type Props = TouchableOpacityProps & {
 
 }
 
-export function CardListRefeicoes({hora, id,  nomeRefeicao, type = 'PRIMARY', ...rest} : Props){
+export function ListMeal({hora, id,  nomeRefeicao, type = 'PRIMARY', ...rest} : Props){
 
   const navigation = useNavigation();
 

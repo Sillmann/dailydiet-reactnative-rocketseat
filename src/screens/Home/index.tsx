@@ -2,14 +2,12 @@ import { useCallback, useState } from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 import { Button } from '@components/Button';
-import { CardEstatisticaIcone } from "@components/CardEstatisticaIcone";
-import { CardListRefeicoesData } from "@components/CardListRefeicaoData";
-import { HeaderHome } from "@views/HeaderHome";
+import { ViewMeat } from "@views/ViewMeat";
+import { ViewStatistic } from "@views/ViewStatistic";
+import { ViewHeader } from "@views/ViewHeader";
 
 import { refeicaoGetEstatisticas } from "@storage/refeicao/refeicaoGetEstatisticas";
 import { Container, ContainerMeat, Title } from "./styles";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { IDENTIFICADOR_COLLECTION, REFEICOES_COLLECTION } from "@storage/storageConfig";
 
 type MeatProps = {
   qtdRefeicoes: number;
@@ -20,19 +18,19 @@ type MeatProps = {
 
 export function Home(){
   const navigation = useNavigation();
-  const [estatistica, setEstatistica] = useState<MeatProps>()
+  const [statistic, setStatistic] = useState<MeatProps>()
   
-  async function handleGetEstatisticas(){
+  async function handleGetStatistics(){
     const estatisticas = await refeicaoGetEstatisticas();
-    setEstatistica(prev => estatisticas);
+    setStatistic(prev => estatisticas);
   }
 
   function handleStatistics(){
-    navigation.navigate('estatisticas', { percentagem: estatistica?.percentagemDentroDieta , type: estatistica?.percentagemDentroDieta >= 50 ? 'PRIMARY' : 'SECONDARY' } )
+    navigation.navigate('estatisticas', { percentagem: statistic?.percentagemDentroDieta , type: statistic?.percentagemDentroDieta >= 50 ? 'PRIMARY' : 'SECONDARY' } )
   }
 
   useFocusEffect(useCallback(() => {
-    handleGetEstatisticas();
+    handleGetStatistics();
   },[]));
 
   function handleNew(){
@@ -41,10 +39,12 @@ export function Home(){
 
   return (    
     <Container>
-      <HeaderHome />
-      <CardEstatisticaIcone 
-        percentagem={estatistica?.percentagemDentroDieta ? estatistica?.percentagemDentroDieta : 0}  
-        type={estatistica?.percentagemDentroDieta >= 50 ? 'PRIMARY' : 'SECONDARY'} 
+      
+      <ViewHeader />
+
+      <ViewStatistic
+        percentagem={statistic?.percentagemDentroDieta ? statistic?.percentagemDentroDieta : 0}  
+        type={statistic?.percentagemDentroDieta >= 50 ? 'PRIMARY' : 'SECONDARY'} 
         onPress={handleStatistics}/>
       
       <ContainerMeat>
@@ -60,7 +60,8 @@ export function Home(){
 
       </ContainerMeat>
 
-      <CardListRefeicoesData />      
+      <ViewMeat />      
+
     </Container>
   );
 }

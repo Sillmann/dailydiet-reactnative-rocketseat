@@ -1,15 +1,16 @@
+import { SafeAreaView } from 'react-native-safe-area-context';
 import styled, {css} from "styled-components/native";
 
-export type btnDietaStyleProps = "PRIMARY" | "SECONDARY" | "DEFAULT";
+// export type btnDietaStyleProps = "PRIMARY" | "SECONDARY" | "DEFAULT";
 
-type Props = {
-  type: btnDietaStyleProps;
-}
+// type Props = {
+//   type: btnDietaStyleProps;
+// }
 
 
-export const Container = styled.View`
+export const Container = styled(SafeAreaView)`
   flex: 1;
-  height: 100%;
+  /* height: 100%; */
 `;
 
 export const Context = styled.View`
@@ -17,6 +18,7 @@ export const Context = styled.View`
   width: 100%;
   background-color: ${({theme}) => theme.COLORS.BASE.GRAY[500]};  
   `;
+
 
 export const Form = styled.ScrollView`
   flex: 1;
@@ -116,6 +118,72 @@ export const TextBtnRefeicao = styled.Text`
   `};  
   align-items: center;
   text-align: center;
-  
-  
 `
+export const DivDados = styled.View`
+  border-radius: 25px;
+  margin-top: 0px;
+  background-color: ${({ theme }) => theme.COLORS.BASE.GRAY[700] };
+`;
+
+export const InputName = styled.TextInput`
+  border-radius: 6px;
+  padding: 16px;
+  border: solid 0.5px;
+  margin: 0px;
+  width: 100%; 
+  font-size: ${({ theme })=>theme.FONT_SIZE.BODY_S}px;    
+`;
+
+export const InputDescription = styled.TextInput`
+  border-radius: 6px;
+  padding: 16px;
+  border: solid 0.5px;
+  margin: 0px;
+  width: 100%; 
+  height: 120px;
+  font-size: ${({ theme })=>theme.FONT_SIZE.BODY_S}px;  
+`;
+
+export const DivColuna = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0px;
+`;
+
+export type btnDietaStyleProps = "PRIMARY" | "SECONDARY" | "DEFAULT";
+
+type Props = {
+  type: btnDietaStyleProps;
+}
+
+export const BtnDietaSim = styled.TouchableOpacity<Props>`
+  width: 159px;
+  height: 50px;
+  
+  background-color: ${({theme, type}) => 
+    type === "PRIMARY" ? theme.COLORS.BASE.GRAY[600] : theme.COLORS.BASE.WHITE}; 
+
+  top: 0;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const BtnDietaNao = styled.TouchableOpacity<Props>`
+  width: 159px;
+  height: 50px;
+
+  background-color: ${({theme, type}) => 
+    type === 'SECUNDARY' ? theme.COLORS.BRAND.RED.LIGHT : theme.COLORS.BASE.WHITE}; 
+
+  top: 0;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Status = styled.Image`
+  width: 8px;
+  height: 8px;
+`;

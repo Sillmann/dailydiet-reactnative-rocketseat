@@ -1,8 +1,8 @@
-import { CardListRefeicoes } from "@components/CardListRefeicoes";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ListMeal } from "@components/ListMeal";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+// import { IDENTIFICADOR_COLLECTION } from "@storage/storageConfig";
 import { useFocusEffect } from "@react-navigation/native";
 import { refeicoesGetAll } from "@storage/refeicao/refeicaoGetAll";
-import { IDENTIFICADOR_COLLECTION } from "@storage/storageConfig";
 import { useCallback, useEffect, useState } from "react";
 import { SectionList } from "react-native";
 import { Container, DataRefeicao } from "./styles";
@@ -22,7 +22,7 @@ type refeicaoProps = {
       ]
 }
 
-export function CardListRefeicoesData(){
+export function ViewMeat(){
   const [dadosRefeicoes, setDadosRefeicos]  = useState<refeicaoProps[]>([]);
 
   try {
@@ -48,7 +48,7 @@ export function CardListRefeicoesData(){
         sections={dadosRefeicoes}
         keyExtractor={(item, index) => item.hora + item.refeicao + index}
         renderItem={({ item }) => 
-          <CardListRefeicoes hora={item.hora} id={item.id} nomeRefeicao={item.refeicao} type={item.type} />                 
+          <ListMeal hora={item.hora} id={item.id} nomeRefeicao={item.refeicao} type={item.type} />                 
         }
         renderSectionHeader={({section: {title} }) => (
           <DataRefeicao>{title.replace('/','.').replace('/','.')}</DataRefeicao>
