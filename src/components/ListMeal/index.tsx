@@ -1,19 +1,25 @@
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import { refeicoesGetAll } from "@storage/refeicao/refeicaoGetAll";
+import { mealGetAll } from "@storage/refeicao/mealGetAll";
 // import { IDENTIFICADOR_COLLECTION, REFEICOES_COLLECTION } from "@storage/storageConfig";
 import { TouchableOpacityProps, ViewProps } from "react-native";
-import { Container, LineVertical, StatusRefeicao, statusRefeicaoStyleProps, TextHora, TextNomeRefeicao } from "./style";
+
+import { Container, 
+         LineVertical, 
+         StatusRefeicao, 
+         statusRefeicaoStyleProps, 
+         TextHora, 
+         TextNomeRefeicao } from "./style";
 
 type Props = TouchableOpacityProps & {
   id: number;
-  hora: string;
-  nomeRefeicao: string;
+  hour: string;
+  name: string;
   type?: statusRefeicaoStyleProps;  
 
 }
 
-export function ListMeal({hora, id,  nomeRefeicao, type = 'PRIMARY', ...rest} : Props){
+export function ListMeal({hour, id, name, type, ...rest} : Props){
 
   const navigation = useNavigation();
 
@@ -21,7 +27,7 @@ export function ListMeal({hora, id,  nomeRefeicao, type = 'PRIMARY', ...rest} : 
     
     let dataRefeicao: string = "";
     let refeicaoSelecionada = {};
-    const refeicoes = await refeicoesGetAll();
+    const refeicoes = await mealGetAll();
     const newRefeicoes = JSON.stringify(refeicoes);
     // console.log('refeicoes', newRefeicoes);
     
@@ -44,23 +50,22 @@ export function ListMeal({hora, id,  nomeRefeicao, type = 'PRIMARY', ...rest} : 
     // console.log('refeicaoSelecionada', refeicaoSelecionada);
     // console.log('refeicaoSelecionadaDescricao', refeicaoSelecionada?.descricao);
 
-    navigation.navigate('descricao', {
+    navigation.navigate('detmeal', {
       id: id,
       title: dataRefeicao,
-      refeicao: refeicaoSelecionada.refeicao,
-      descricao: refeicaoSelecionada.descricao,
-      hora: refeicaoSelecionada.hora,
-      dentroDieta: refeicaoSelecionada.dentroDieta,
-      type: refeicaoSelecionada.type  
+      name: refeicaoSelecionada.name,
+      description: refeicaoSelecionada.description,
+      hour: refeicaoSelecionada.hour,
+      diet: refeicaoSelecionada.diet
     });
     
   }
 
   return (
     <Container onPress={() => handleEditarRefeicao(id)}>
-      <TextHora>{hora}</TextHora>
+      <TextHora>{hour}</TextHora>
       <LineVertical />
-      <TextNomeRefeicao>{nomeRefeicao}</TextNomeRefeicao>
+      <TextNomeRefeicao>{name}</TextNomeRefeicao>
       <StatusRefeicao type={type} />
     </Container>
   );

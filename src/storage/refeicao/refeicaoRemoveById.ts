@@ -1,10 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { IDENTIFICADOR_COLLECTION, REFEICOES_COLLECTION } from "@storage/storageConfig";
-import { refeicoesGetAll } from "./refeicaoGetAll";
+import { mealGetAll } from "./mealGetAll";
 
 export async function  refeicaoRemoveById(id: number, data: string){
 
-  const refeicoes = await refeicoesGetAll();
+  const refeicoes = await mealGetAll();
 
   const refeicoesOutrasDatas = refeicoes.filter(refeicao => refeicao.title !== data);
   const refeicaoData = refeicoes.find(refeicao => refeicao.title === data);

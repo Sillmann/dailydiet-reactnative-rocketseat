@@ -2,15 +2,14 @@ export declare global{
   namespace ReactNavigation{
     interface RootParamList{
       home: undefined;
-      estatisticas: {
+      good: undefined;
+      bad: undefined;
+      statistics: {
         percentagem: number;
         type?: string;
       };
       refeicao: undefined;
-      salvo: {
-        type: 'PRIMARY' | 'SECONDARY'
-      };
-      descricao: {
+      detmeal: {
         id: number;
         title: string;
         refeicao: string;
@@ -19,7 +18,7 @@ export declare global{
         dentroDieta: boolean;
         type: 'PRIMARY' | 'SECONDARY';
       },
-      editar: {
+      editmeal: {
         idRefeicao: number;
         dataRefeicao: string;
         nomeRefeicao: string;

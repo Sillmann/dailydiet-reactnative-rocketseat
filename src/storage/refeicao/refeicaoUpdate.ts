@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { IDENTIFICADOR_COLLECTION, REFEICOES_COLLECTION } from "@storage/storageConfig";
 import { useState } from "react";
-import { refeicoesGetAll } from "./refeicaoGetAll";
+import { mealGetAll } from "./mealGetAll";
 
 type refeicaoProps = {
   title: string;
@@ -17,7 +17,7 @@ type refeicaoProps = {
 export async function  refeicaoUpdate({title, titleAntiga, hora, id, refeicao, descricao, dentroDieta, type }: refeicaoProps){
   try {
     
-    const alimentacoes = await refeicoesGetAll();     
+    const alimentacoes = await mealGetAll();     
      if(title === titleAntiga){
       alimentacoes.map(alimento => {
         alimento.data.map(food => {

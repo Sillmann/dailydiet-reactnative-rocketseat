@@ -10,18 +10,18 @@ import { refeicaoRemoveById } from "@storage/refeicao/refeicaoRemoveById";
 type RoutesParamsProps = {
     id: number;
     title: string;
-    refeicao: string;
-    descricao: string;
-    hora: string;
-    dentroDieta: boolean;
-    type: 'PRIMARY' | 'SECONDARY';
+    name: string;
+    description: string;
+    hour: string;
+    diet: boolean;
+    // type: 'PRIMARY' | 'SECONDARY';
 }
 
-export function DetalhesRefeicao(){
+export function DetMeal(){
 
   const navigation = useNavigation();
   const route = useRoute();
-  const { id, title, refeicao, descricao, hora, dentroDieta, type } = route.params as RoutesParamsProps;  
+  const { id, title, name, description, hour, diet } = route.params as RoutesParamsProps;  
 
   function handleRefeicaoRemove(){
     Alert.alert('Remover', 'Deseja remover a refeicao?',
@@ -39,30 +39,31 @@ export function DetalhesRefeicao(){
   }
 
   function handleEditarRefeicao(){
-    navigation.navigate('editar', {
+    navigation.navigate('editmeal', {
       idRefeicao: id,
       dataRefeicao: title, 
-      nomeRefeicao: refeicao,
-      descricaoRefeicao: descricao,
-      horaRefeicao: hora,
-      dentroDietaRefeicao: dentroDieta,
-      typeRefeicao: dentroDieta ? 'PRIMARY' : 'SECONDARY'
+      nomeRefeicao: name,
+      descricaoRefeicao: description,
+      horaRefeicao: hour,
+      dentroDietaRefeicao: diet
+      // ,
+      // typeRefeicao: dentroDieta ? 'PRIMARY' : 'SECONDARY'
     });  
   }
 
   return (
     <Container>
-      <Context type={type}>
-        <CardHeaderNovaRefeicao label="Refeição" type={dentroDieta ? 'PRIMARY' : 'SECONDARY'} />
+      <Context type={diet}>
+        <CardHeaderNovaRefeicao label="Refeição" type={diet ? 'S' : 'N'} />
         <ViewPrincipal>
           <ViewTextos>
-            <Titulo>{refeicao}</Titulo>
-            <SubTitulo>{descricao}</SubTitulo>
+            <Titulo>{name}</Titulo>
+            <SubTitulo>{description}</SubTitulo>
             <TituloXS>Data e hora</TituloXS>
-            <SubTitulo>{title} às {hora}</SubTitulo>
+            <SubTitulo>{title} às {hour}</SubTitulo>
             <ViewDentroDieta>
-              <CirculoStatusDieta type={type}/>
-              <TextoStatusDieta>{dentroDieta ? 'dentro da dieta' : 'fora da dieta'}</TextoStatusDieta>
+              <CirculoStatusDieta type={diet}/>
+              <TextoStatusDieta>{diet ? 'dentro da dieta' : 'fora da dieta'}</TextoStatusDieta>
             </ViewDentroDieta>
           </ViewTextos>
         </ViewPrincipal>

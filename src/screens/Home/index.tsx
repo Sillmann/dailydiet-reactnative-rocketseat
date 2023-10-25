@@ -26,7 +26,7 @@ export function Home(){
   }
 
   function handleStatistics(){
-    navigation.navigate('estatisticas', { percentagem: statistic?.percentagemDentroDieta , type: statistic?.percentagemDentroDieta >= 50 ? 'PRIMARY' : 'SECONDARY' } )
+    navigation.navigate('statistics', { percentagem: statistic?.percentagemDentroDieta , type: statistic?.percentagemDentroDieta >= 50 ? 'PRIMARY' : 'SECONDARY' } )
   }
 
   useFocusEffect(useCallback(() => {

@@ -3,15 +3,14 @@ import { REFEICOES_COLLECTION } from "@storage/storageConfig";
 
 type refeicaoProps = {  
   title: string,
-      data: [
-        { 
-          hora: string, 
-          refeicao: string, 
-          descricao: string;          
-          dentroDieta: boolean,
-          type: "PRIMARY" | "SECONDARY"
-        }
-      ]
+  data: [
+    { 
+      hour: string, 
+      name: string, 
+      description: string;          
+      diet: boolean
+    }
+  ]
 }
 
 function converterData(data: string){
@@ -20,7 +19,7 @@ function converterData(data: string){
 
 }
 
-export async function refeicoesGetAll(){
+export async function mealGetAll(){
   try {
     const storage = await AsyncStorage.getItem(REFEICOES_COLLECTION);
     const storages: refeicaoProps[] = storage ? JSON.parse(storage) : []; 

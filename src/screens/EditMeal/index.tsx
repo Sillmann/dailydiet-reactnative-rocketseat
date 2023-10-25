@@ -6,11 +6,11 @@ import { Container } from "@components/Loading/styles";
 import { TextInputMask } from "react-native-masked-text";
 import { BtnAddRefeicao, BtnDieta, CirculoStatus, Context, DivLinha, DivLinha2Colunas, DivLinha2ColunasSemMargem, DivLinhaMetade, Form, Input, Label, TextBtnRefeicao } from "./styles";
 import THEME from '../../theme';
-import {refeicaoCreate} from '@storage/refeicao/refeicaoCreate';
+// import {refeicaoCreate} from '@storage/refeicao/mealCreate';
 import { useNavigation, useRoute } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { IDENTIFICADOR_COLLECTION } from "@storage/storageConfig";
-import { getNewIdRefeicao } from "@storage/refeicao/getNewIdRefeicao";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+// import { IDENTIFICADOR_COLLECTION } from "@storage/storageConfig";
+// import { getNewIdRefeicao } from "@storage/refeicao/getNewIdRefeicao";
 import { refeicaoUpdate } from "@storage/refeicao/refeicaoUpdate";
 
 type RoutesParamsProps = {
@@ -23,7 +23,7 @@ type RoutesParamsProps = {
   typeRefeicao: 'PRIMARY' | 'SECONDARY'
 }
 
-export function EditarRefeicao(){
+export function EditMeal(){
 
   const navigation = useNavigation();
   const route = useRoute();
@@ -77,7 +77,7 @@ export function EditarRefeicao(){
         
       await refeicaoUpdate({title: date, titleAntiga: dataRefeicao, hora, id: idRefeicao, refeicao, descricao, dentroDieta, type:  dentroDieta  ? "PRIMARY" : "SECONDARY" });
 
-      navigation.navigate('salvo', {type:  dentroDieta  ? "PRIMARY" : "SECONDARY"});
+      // navigation.navigate('salvo', {type:  dentroDieta  ? "PRIMARY" : "SECONDARY"});
       
       
     } catch (error) {

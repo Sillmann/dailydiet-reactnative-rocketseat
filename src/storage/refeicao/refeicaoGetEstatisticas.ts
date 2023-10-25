@@ -1,11 +1,7 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { REFEICOES_COLLECTION } from "@storage/storageConfig";
-import { refeicoesGetAll } from "./refeicaoGetAll";
-
-
+import { mealGetAll } from "./mealGetAll";
 
 export async function refeicaoGetEstatisticas(){
-  const refeicoes = await refeicoesGetAll();
+  const fileData = await mealGetAll();
   let qtdRefeicoes = 0;
   let qtdRefeicoesDentro = 0;
   let qtdRefeicoesFora = 0;
@@ -13,13 +9,13 @@ export async function refeicaoGetEstatisticas(){
   let melhorSequencia = 0;
   let sequenciaAtual = 0;
 
-  refeicoes.map(refeicao => qtdRefeicoes += refeicao.data.length );
-  refeicoes.map(refeicao => qtdRefeicoesDentro += refeicao.data.filter(alimentacao => alimentacao.dentroDieta === true).length)
+  fileData.map(i => qtdRefeicoes += i.data.length );
+  fileData.map(i => qtdRefeicoesDentro += i.data.filter(i => i.diet === 'S').length)
 
-  refeicoes.forEach(refeicao => 
-    refeicao.data.forEach(alimentacao => {
+  fileData.forEach(i => 
+    i.data.forEach(j => {
       // console.log('DentroDieta: ',alimentacao.dentroDieta);
-      if(alimentacao.dentroDieta){
+      if(j.diet === 'S'){
         sequenciaAtual += 1;        
         if(sequenciaAtual > melhorSequencia){
           melhorSequencia = sequenciaAtual;

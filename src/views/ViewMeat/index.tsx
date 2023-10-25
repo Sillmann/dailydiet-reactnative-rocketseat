@@ -2,37 +2,36 @@ import { ListMeal } from "@components/ListMeal";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 // import { IDENTIFICADOR_COLLECTION } from "@storage/storageConfig";
 import { useFocusEffect } from "@react-navigation/native";
-import { refeicoesGetAll } from "@storage/refeicao/refeicaoGetAll";
+import { mealGetAll } from "@storage/refeicao/mealGetAll";
 import { useCallback, useEffect, useState } from "react";
 import { SectionList } from "react-native";
 import { Container, DataRefeicao } from "./styles";
 
 
-type refeicaoProps = {  
+type mealProps = {  
   title: string,
-      data: [
-        { 
-          id: number,
-          hora: string, 
-          refeicao: string, 
-          descricao: string;          
-          dentroDieta: boolean,
-          type: "PRIMARY" | "SECONDARY"
-        }
-      ]
+  data: [
+    { 
+      id: number,
+      hour: string, 
+      name: string, 
+      description: string;          
+      diet: boolean
+    }
+  ]
 }
 
 export function ViewMeat(){
-  const [dadosRefeicoes, setDadosRefeicos]  = useState<refeicaoProps[]>([]);
+  const [dataMeals, setDataMeals]  = useState<mealProps[]>([]);
 
   try {
     async function fetchRefeicoes(){
-      const dados = await refeicoesGetAll();
+      const dataFile = await mealGetAll();
 
-      dados.map(dado => {
-        dado.data.sort((a,b) => a.hora < b.hora)
+      dataFile.map(dado => {
+        dado.data.sort((a,b) => a.hour < b.hour)
       })
-      setDadosRefeicos(dados);
+      setDataMeals(dataFile);
     }    
     useFocusEffect(useCallback(() => {
       fetchRefeicoes();
@@ -45,10 +44,10 @@ export function ViewMeat(){
   return (
     <Container>
       <SectionList 
-        sections={dadosRefeicoes}
-        keyExtractor={(item, index) => item.hora + item.refeicao + index}
+        sections={dataMeals}
+        keyExtractor={(item, index) => item.hour + item.name + index}
         renderItem={({ item }) => 
-          <ListMeal hora={item.hora} id={item.id} nomeRefeicao={item.refeicao} type={item.type} />                 
+          <ListMeal hour={item.hour} id={item.id} name={item.name} type={item.diet} />                 
         }
         renderSectionHeader={({section: {title} }) => (
           <DataRefeicao>{title.replace('/','.').replace('/','.')}</DataRefeicao>

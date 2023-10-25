@@ -1,11 +1,11 @@
 import { createNativeStackNavigator} from '@react-navigation/native-stack';
-import { DetalhesRefeicao } from '@screens/DetalhesRefeicao';
-import { EditarRefeicao } from '@screens/EditarRefeicao';
-import { Estatisticas } from '@screens/Estatisticas';
+import { DetMeal } from '@screens/DetMeal';
+import { EditMeal } from '@screens/EditMeal';
+import { Statistics } from '@screens/Statistics';
 import { Home } from '@screens/Home';
 import { New } from '@screens/New';
-import { RefeicaoSalvo } from '@screens/RefeicaoSalvo';
-
+import { Good } from '@screens/Good';
+import { Bad } from '@screens/Bad';
 
 const {Navigator, Screen} = createNativeStackNavigator();
 
@@ -13,11 +13,12 @@ export function AppRoutes(){
   return(
     <Navigator screenOptions={{headerShown: false}}>
       <Screen name="home" component={Home} />
-      <Screen name="estatisticas" component={Estatisticas} />
+      <Screen name="statistics" component={Statistics} />
       <Screen name="new" component={New} />
-      <Screen name="salvo" component={RefeicaoSalvo} />
-      <Screen name="descricao" component={DetalhesRefeicao} />
-      <Screen name="editar" component={EditarRefeicao} />
+      <Screen name="good" component={Good} />
+      <Screen name="bad" component={Bad} />
+      <Screen name="detmeal" component={DetMeal} />
+      <Screen name="editmeal" component={EditMeal} />
     </Navigator>
   );
 }

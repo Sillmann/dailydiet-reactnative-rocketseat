@@ -49,7 +49,7 @@ export const TextNomeRefeicao = styled.Text`
 export const StatusRefeicao = styled.View<Props>`
   width: 28px;
   height: 28px;
-  background-color: ${({theme, type}) => type === 'PRIMARY' ? theme.COLORS.BRAND.GREEN['MID'] : theme.COLORS.BRAND.RED['MID']};  
+  background-color: ${({theme, type}) => type === 'S' ? theme.COLORS.BRAND.GREEN['MID'] : theme.COLORS.BRAND.RED['MID']};  
   border-radius: 14px;
   margin: 0 12px ;
 `;

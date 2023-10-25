@@ -17,7 +17,7 @@ export const Container = styled.View`
 export const Context = styled.View<Props>`
   flex: 1;
   width: 100%;
-  background-color: ${({theme, type}) =>  type === 'PRIMARY' ? theme.COLORS.BRAND.GREEN.LIGHT : theme.COLORS.BRAND.RED.LIGHT};  
+  background-color: ${({theme, type}) =>  type === 'S' ? theme.COLORS.BRAND.GREEN.LIGHT : theme.COLORS.BRAND.RED.LIGHT};  
 `;
 
 export const ViewPrincipal = styled.View`
@@ -76,7 +76,7 @@ export const CirculoStatusDieta = styled.View<Props>`
   width: 8px;
   height: 8px;
   border-radius: 8px;
-  background-color: ${({theme, type}) =>  type === 'PRIMARY' ? theme.COLORS.BRAND.GREEN.DARK : theme.COLORS.BRAND.RED.DARK};  
+  background-color: ${({theme, type}) =>  type === 'S' ? theme.COLORS.BRAND.GREEN.DARK : theme.COLORS.BRAND.RED.DARK};  
 `;
 
 export const TextoStatusDieta = styled.Text`

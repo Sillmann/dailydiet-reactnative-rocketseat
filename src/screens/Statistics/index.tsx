@@ -18,7 +18,7 @@ type RefeicaoProps = {
   melhorSequencia: number;
 }
 
-export function Estatisticas(){
+export function Statistics(){
 
   const [estatisticas, setEstatisticas] = useState<RefeicaoProps>();
 

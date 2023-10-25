@@ -11,7 +11,7 @@ import { CardHeaderNovaRefeicao } from "@components/CardHeaderNovaRefeicao";
 import { Container } from "@components/Loading/styles";
 import { HeaderMeat } from '@components/HeaderMeat';
 import { TextInputMask } from "react-native-masked-text";
-import {refeicaoCreate} from '@storage/refeicao/refeicaoCreate';
+import { mealCreate} from '@storage/refeicao/mealCreate';
 import { useNavigation } from "@react-navigation/native";
 import { getNewIdRefeicao } from "@storage/refeicao/getNewIdRefeicao";
 
@@ -112,16 +112,20 @@ export function New(){
       // }
 
   
-      await refeicaoCreate({title: date, hora, id: newId, refeicao, descricao, dentroDieta, type:  dentroDieta  ? "PRIMARY" : "SECONDARY" });
+      await mealCreate({title: date, hour, id: newId, name, description, diet });
 
-      navigation.navigate('salvo', {type:  dentroDieta  ? "PRIMARY" : "SECONDARY"});
-      
+      if (diet==='S'){
+        navigation.navigate('good');
+      } else {
+        navigation.navigate('bad');
+      }
+
     } catch (error) {
       console.log(error);      
     }
   }  
 
-  function handleSetDentroDieta(){
+  function handleSetInDiet(){
     setBtnYes('PRIMARY');
     setBtnNo('DEFAULT');
     setDiet('S');
@@ -135,7 +139,7 @@ export function New(){
     // }
   }
 
-  function handleSetForaDieta(){
+  function handleSetOutDiet(){
     setBtnYes('DEFAULT');
     setBtnNo('SECUNDARY');
     setDiet('N');    
@@ -178,7 +182,7 @@ export function New(){
             <Label>Descrição</Label>
             <InputDescription
               value={description}
-              onChangeText={description} 
+              onChangeText={setDescription} 
               multiline={true}
               numberOfLines={4}
           />
@@ -283,7 +287,7 @@ export function New(){
 
               <BtnDietaSim
                 type={btnYes}
-                onPress={handleSetDentroDieta}
+                onPress={handleSetInDiet}
               >
               
                 <Status source={statusyesPng} />
@@ -293,7 +297,7 @@ export function New(){
 
               <BtnDietaNao
                 type={btnNo}
-                onPress={handleSetForaDieta}
+                onPress={handleSetOutDiet}
               >
               
                 <Status source={statusnoPng} />
