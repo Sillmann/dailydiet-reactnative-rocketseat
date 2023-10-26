@@ -1,13 +1,18 @@
 import { useState, useCallback } from 'react';
-import { CardEstatisticaIconeVoltar } from "@components/CardEstatisticaIconeVoltar";
-import { CardEstatisticaSemIcone } from "@components/CardEstatisticaSemIcone";
 import { useFocusEffect, useRoute } from "@react-navigation/native";
-import { Container, Context, DivCardsQtdRefeicoes, Title } from "./styles";
 import { refeicaoGetEstatisticas } from '@storage/refeicao/refeicaoGetEstatisticas';
+import { HeaderMeal } from '@components/HeaderMeal';
+import { HeaderPercent } from '@components/HeaderPercent';
+import { ViewStatistics1 } from './ViewStatistics1';
+import { ViewStatistics2 } from './ViewStatistics2';
+
+import { Container, 
+         Context, 
+         Column, 
+         Title } from "./styles";
 
 type RoutesParamsProps = {
   percentagem: number;
-  type: 'PRIMARY' | 'SECONDARY';
 }
 
 type RefeicaoProps = {
@@ -29,24 +34,51 @@ export function Statistics(){
   
   const route = useRoute();
 
-  const { percentagem, type } = route.params as RoutesParamsProps;
+  const { percentagem } = route.params as RoutesParamsProps;
 
   useFocusEffect(useCallback(() => {
     handleGetEstatisticas();
   },[]));
 
   return (
-    <Container type={type}>
-      <CardEstatisticaIconeVoltar percentagem={percentagem ? percentagem?.toFixed(2) : 0} type={percentagem >= 50 ? 'PRIMARY' : 'SECONDARY' } />
+    <Container>
+      
+      <HeaderMeal 
+        infoText='Estatísticas'/>
+
+      <HeaderPercent 
+        infoPercent={percentagem ? percentagem?.toFixed(2) : 0}
+      /> 
+
       <Context>
+
         <Title>Estatísticas gerais</Title>
-        <CardEstatisticaSemIcone valor={estatisticas?.melhorSequencia} textoEmbaixo="melhor sequência de pratos dentro da dieta" />
-        <CardEstatisticaSemIcone valor={estatisticas?.qtdRefeicoes} textoEmbaixo="refeições registradas" />
-        <DivCardsQtdRefeicoes>
-          <CardEstatisticaSemIcone valor={estatisticas?.qtdRefeicoesDentro} textoEmbaixo="refeições dentro da dieta"  type="PRIMARY"/>
-          <CardEstatisticaSemIcone valor={estatisticas?.qtdRefeicoesFora} textoEmbaixo="refeições fora da dieta"  type="SECONDARY"/>
-        </DivCardsQtdRefeicoes>
-      </Context>
+        
+        <ViewStatistics1 
+          infoNum={estatisticas?.melhorSequencia}
+          infoText="melhor sequência de pratos dentro da dieta"
+        />
+
+        <ViewStatistics1 
+          infoNum={estatisticas?.qtdRefeicoes}
+          infoText="refeições registradas"
+        />
+
+        <Column>
+          <ViewStatistics2
+            infoNum={estatisticas?.qtdRefeicoesDentro} 
+            infoText="refeições dentro da dieta"
+            color="GREEN"
+          />
+
+          <ViewStatistics2
+            infoNum={estatisticas?.qtdRefeicoesFora} 
+            infoText="refeições fora da dieta"
+            color="RED"
+          />
+        </Column>
+
+]      </Context>
     </Container>
   );
 

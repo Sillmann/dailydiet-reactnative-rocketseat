@@ -1,17 +1,22 @@
 import { useState } from "react";
 import { StyleSheet, Alert, KeyboardAvoidingView, Platform } from "react-native";
+import { refeicaoUpdate } from "@storage/refeicao/refeicaoUpdate";
+
 import { format } from 'date-fns';
-import { CardHeaderNovaRefeicao } from "@components/CardHeaderNovaRefeicao";
-import { Container } from "@components/Loading/styles";
 import { TextInputMask } from "react-native-masked-text";
+
+// import { CardHeaderNovaRefeicao } from "@components/CardHeaderNovaRefeicao";
+import { Container } from "@components/Loading/styles";
+import { HeaderMeal } from '@components/HeaderMeal';
+
 import { BtnAddRefeicao, BtnDieta, CirculoStatus, Context, DivLinha, DivLinha2Colunas, DivLinha2ColunasSemMargem, DivLinhaMetade, Form, Input, Label, TextBtnRefeicao } from "./styles";
+
 import THEME from '../../theme';
 // import {refeicaoCreate} from '@storage/refeicao/mealCreate';
 import { useNavigation, useRoute } from "@react-navigation/native";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 // import { IDENTIFICADOR_COLLECTION } from "@storage/storageConfig";
 // import { getNewIdRefeicao } from "@storage/refeicao/getNewIdRefeicao";
-import { refeicaoUpdate } from "@storage/refeicao/refeicaoUpdate";
 
 type RoutesParamsProps = {
   idRefeicao: number;
@@ -111,7 +116,11 @@ export function EditMeal(){
   return (
     <Container>
       <Context>
-        <CardHeaderNovaRefeicao label="Editar Refeição" type="GRAY" />
+        
+        {/* <CardHeaderNovaRefeicao label="Editar Refeição" type="GRAY" /> */}
+        
+        <HeaderMeal infoText='Editar Refeição'/>
+
         <Form>
           <KeyboardAvoidingView style={{flex: 1}} behavior="position" keyboardVerticalOffset={50}>
           <DivLinha>

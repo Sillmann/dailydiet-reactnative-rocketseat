@@ -2,12 +2,17 @@ import { useNavigation } from "@react-navigation/native";
 
 import backPng from '@assets/back.png';
 
-import { DivCabecalho, 
+import { Container, 
          BtnBack, 
          ImgBack, 
-         LblBack } from "./styles";
+         LblBack 
+        } from "./styles";
 
-export function HeaderMeat(){
+type Props = {
+  infoText: string;
+}  
+         
+export function HeaderMeal({ infoText }: Props ){
 
   const navigation = useNavigation();
 
@@ -16,7 +21,7 @@ export function HeaderMeat(){
   }
 
   return(
-    <DivCabecalho>
+    <Container>
           
       <BtnBack
         onPress={handleGoBack}  
@@ -26,8 +31,8 @@ export function HeaderMeat(){
             
       </BtnBack>
 
-      <LblBack>Nova Refeição</LblBack>
+      <LblBack>{ infoText }</LblBack>
         
-    </DivCabecalho>
+    </Container>
   );
 }

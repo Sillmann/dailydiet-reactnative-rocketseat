@@ -1,6 +1,6 @@
 import styled, {css} from "styled-components/native";
 
-export const DivCabecalho = styled.View`
+export const Container = styled.View`
   background-color: ${({ theme }) => theme.COLORS.BASE.GRAY[500]};  
   height: 100px;
   /* margin-top: 0px; */

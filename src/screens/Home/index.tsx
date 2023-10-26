@@ -26,7 +26,7 @@ export function Home(){
   }
 
   function handleStatistics(){
-    navigation.navigate('statistics', { percentagem: statistic?.percentagemDentroDieta , type: statistic?.percentagemDentroDieta >= 50 ? 'PRIMARY' : 'SECONDARY' } )
+    navigation.navigate('statistics', { percentagem: statistic?.percentagemDentroDieta } )
   }
 
   useFocusEffect(useCallback(() => {
@@ -40,7 +40,7 @@ export function Home(){
   return (    
     <Container>
       
-      <ViewHeader />
+      <ViewHeader/>
 
       <ViewStatistic
         percentagem={statistic?.percentagemDentroDieta ? statistic?.percentagemDentroDieta : 0}  

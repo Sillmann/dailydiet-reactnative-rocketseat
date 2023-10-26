@@ -1,6 +1,13 @@
 import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
+
+export type ButtonTypeProps = 'EDIT' | 'TRASH';
+
+type Props = {
+  type: ButtonTypeProps;
+}
+
 export const Container = styled(TouchableOpacity)`
   flex: 1;
 
@@ -21,3 +28,9 @@ export const ButtonTexto = styled.Text`
   font-size: ${({ theme }) => theme.FONT_SIZE.TITLE_S}px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
 `
+export const Img = styled.Image<Props>`
+  width : 18px;
+  height: 18px;  
+  color: ${({ theme })=>theme.COLORS.BASE.WHITE};
+
+`;

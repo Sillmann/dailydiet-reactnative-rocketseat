@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components/native";
 
-export type cardStyleProps = "PRIMARY" | "SECONDARY";
+// export type cardStyleProps = "PRIMARY" | "SECONDARY";
 
-type Props = {
-  type: cardStyleProps;
-}
+// type Props = {
+//   type: cardStyleProps;
+// }
 
-export const Container = styled.View<Props>`
+export const Container = styled.View`
   flex: 1;
   background-color: ${({theme, type}) => type === 'PRIMARY' ? theme.COLORS.BRAND.GREEN['LIGHT'] : theme.COLORS.BRAND.RED['LIGHT']};  
 `;
@@ -14,7 +14,7 @@ export const Container = styled.View<Props>`
 export const Context = styled.View`
   background-color: ${({theme}) => theme.COLORS.BASE.GRAY[700]};
   flex: 1;
-  margin-top: 10px;
+  margin-top: -15px;
   padding:  0 24px;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
@@ -27,10 +27,10 @@ export const Title = styled.Text`
     color: ${theme.COLORS.BASE.GRAY[100]};
   `};  
   text-align: center;
-  margin: 23px 0;
+  margin: 20px 0px;
 `;
 
-export const DivCardsQtdRefeicoes = styled.View`
+export const Column = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `;

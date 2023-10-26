@@ -9,7 +9,7 @@ import { StyleSheet,
 import { format } from 'date-fns';
 import { CardHeaderNovaRefeicao } from "@components/CardHeaderNovaRefeicao";
 import { Container } from "@components/Loading/styles";
-import { HeaderMeat } from '@components/HeaderMeat';
+import { HeaderMeal } from '@components/HeaderMeal';
 import { TextInputMask } from "react-native-masked-text";
 import { mealCreate} from '@storage/refeicao/mealCreate';
 import { useNavigation } from "@react-navigation/native";
@@ -162,7 +162,7 @@ export function New(){
       <Context>
         {/* <CardHeaderNovaRefeicao label="Nova Refeição" type="GRAY" /> */}
 
-        <HeaderMeat/>
+        <HeaderMeal infoText='Nova Refeição'/>
 
         {/* <ScrollView> */}
 

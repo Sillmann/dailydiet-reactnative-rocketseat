@@ -20,7 +20,7 @@ export const Context = styled.View<Props>`
   background-color: ${({theme, type}) =>  type === 'S' ? theme.COLORS.BRAND.GREEN.LIGHT : theme.COLORS.BRAND.RED.LIGHT};  
 `;
 
-export const ViewPrincipal = styled.View`
+export const Form = styled.View`
   flex: 1;
   background-color: ${({theme}) => theme.COLORS.BASE.GRAY[700]};  
   border-top-left-radius: 20px;
@@ -29,12 +29,7 @@ export const ViewPrincipal = styled.View`
   padding-top: 16px;
 `;
 
-export const ViewTextos = styled.View`
-  height: 205px;
-  width: 100%;
-`;
-
-export const Titulo = styled.Text`
+export const Title = styled.Text`
   margin-top: 24px;
   ${({theme}) => css`
     font-family: ${theme.FONT_FAMILY.BOLD};
@@ -43,7 +38,7 @@ export const Titulo = styled.Text`
   `};    
 `;
 
-export const SubTitulo = styled.Text`
+export const SubTitle = styled.Text`
   margin-top: 8px;
   ${({theme}) => css`
     font-family: ${theme.FONT_FAMILY.REGULAR};
@@ -52,7 +47,7 @@ export const SubTitulo = styled.Text`
   `};    
 `;
 
-export const TituloXS = styled.Text`
+export const Label = styled.Text`
   margin-top: 24px;
   ${({theme}) => css`
   font-family: ${theme.FONT_FAMILY.BOLD};
@@ -61,10 +56,10 @@ export const TituloXS = styled.Text`
   `};    
   `;
 
-export const ViewDentroDieta = styled.View`
+export const Diet = styled.View`
   margin-top: 24px;
   width: 144px;
-  height: 34px;
+  height: 50px;
   flex-direction: row;
   border-radius: 1000px;
   background-color: ${({theme}) => theme.COLORS.BASE.GRAY[600]};
@@ -72,14 +67,14 @@ export const ViewDentroDieta = styled.View`
   align-items: center;
 `;
 
-export const CirculoStatusDieta = styled.View<Props>`
-  width: 8px;
-  height: 8px;
-  border-radius: 8px;
+export const ImgDiet = styled.View<Props>`
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
   background-color: ${({theme, type}) =>  type === 'S' ? theme.COLORS.BRAND.GREEN.DARK : theme.COLORS.BRAND.RED.DARK};  
 `;
 
-export const TextoStatusDieta = styled.Text`
+export const TextDiet = styled.Text`
   margin-left: 8px;
   ${({theme}) => css`
   font-family: ${theme.FONT_FAMILY.REGULAR};
@@ -88,13 +83,14 @@ export const TextoStatusDieta = styled.Text`
   `};    
 `;
 
-export const ViewBtnEditarExcluir = styled.View`
+export const ListButtons = styled.View`
   position: absolute;
   width: 100%;
-  height: 105px;
+  height: 125px;
   bottom: 30px;
-  right: 0;
   padding: 0 24px;
+  flex: 1;
+  justify-content: space-between;
 `;
 
 export const BtnEditarExcluir = styled.TouchableOpacity<Props>`
