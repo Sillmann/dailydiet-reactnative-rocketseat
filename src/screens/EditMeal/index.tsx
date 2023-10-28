@@ -1,211 +1,232 @@
 import { useState } from "react";
-import { StyleSheet, Alert, KeyboardAvoidingView, Platform } from "react-native";
+import { StyleSheet, 
+         Alert } from "react-native";
 import { refeicaoUpdate } from "@storage/refeicao/refeicaoUpdate";
 
-import { format } from 'date-fns';
 import { TextInputMask } from "react-native-masked-text";
 
-// import { CardHeaderNovaRefeicao } from "@components/CardHeaderNovaRefeicao";
 import { Container } from "@components/Loading/styles";
 import { HeaderMeal } from '@components/HeaderMeal';
 
-import { BtnAddRefeicao, BtnDieta, CirculoStatus, Context, DivLinha, DivLinha2Colunas, DivLinha2ColunasSemMargem, DivLinhaMetade, Form, Input, Label, TextBtnRefeicao } from "./styles";
-
-import THEME from '../../theme';
-// import {refeicaoCreate} from '@storage/refeicao/mealCreate';
 import { useNavigation, useRoute } from "@react-navigation/native";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { IDENTIFICADOR_COLLECTION } from "@storage/storageConfig";
-// import { getNewIdRefeicao } from "@storage/refeicao/getNewIdRefeicao";
 
-type RoutesParamsProps = {
-  idRefeicao: number;
-  dataRefeicao: string;
-  nomeRefeicao: string;
-  descricaoRefeicao: string;
-  horaRefeicao: string;
-  dentroDietaRefeicao: boolean;
-  typeRefeicao: 'PRIMARY' | 'SECONDARY'
+import statusyesPng from '@assets/statusyes.png';
+import statusnoPng from '@assets/statusno.png';
+
+import { BtnAddRefeicao, 
+         Context, 
+         DivLinha, 
+         DivColuna,
+         Form, 
+         InputName, 
+         InputDescription, 
+         Label, 
+         TextBtnRefeicao,
+         BtnDietaSim,
+         BtnDietaNao,
+         Status
+        } from "./styles";
+
+
+type RouteParamsProps = {
+  pId: number;
+  pTitle: string;
+  pName: string;
+  pDescription: string;
+  pHour: string;
+  pDiet: string;
 }
 
 export function EditMeal(){
 
   const navigation = useNavigation();
   const route = useRoute();
-  const { idRefeicao, dataRefeicao, nomeRefeicao, descricaoRefeicao, horaRefeicao, dentroDietaRefeicao, typeRefeicao } = route.params as RoutesParamsProps;  
+  // const { idRefeicao, dataRefeicao, nomeRefeicao, descricaoRefeicao, horaRefeicao, dentroDietaRefeicao, typeRefeicao } = route.params as RouteParamsProps;  
+  const { pId, pTitle, pName, pDescription, pHour, pDiet } = route.params as RouteParamsProps;  
 
-  const [date, setDate] = useState(dataRefeicao);  
-  const [hora, setHora] = useState(horaRefeicao);
-  const [btnSim, setBtnSim] = useState(dentroDietaRefeicao ? "PRIMARY" : "DEFAULT");
-  const [btnNao, setBtnNao] = useState(dentroDietaRefeicao ? "DEFAULT" : "SECONDARY");
-  const [refeicao, setRefeicao] = useState(nomeRefeicao);
-  const [descricao, setDescricao] = useState(descricaoRefeicao);
-  const [dentroDieta, setDentroDieta] = useState(dentroDietaRefeicao);  
+  const [name, setName] = useState(pName);
+  const [description, setDescription] = useState(pDescription);
+  const [date, setDate] = useState(pTitle);
+  const [hour, setHour] = useState(pHour);
+  const [diet, setDiet] = useState(pDiet);
+  const [btnYes, setBtnYes] = useState(pDiet === 'S' ?"PRIMARY" : "DEFAULT");;
+  const [btnNo, setBtnNo] = useState(pDiet === 'S' ? "DEFAULT" : "SECONDARY");
 
-
-  async function handleAddRefeicao(){
+  async function handleUpdateMeal(){
     try {
       
-      const dados = {
-          id: idRefeicao,
-          hora, 
-          refeicao, 
-          descricao,
-          dentroDieta,
-          type: dentroDieta  ? "PRIMARY" : "SECONDARY"      
-      }
+      // const dados = {
+      //     id: idRefeicao,
+      //     hora, 
+      //     refeicao, 
+      //     descricao,
+      //     dentroDieta,
+      //     type: dentroDieta  ? "PRIMARY" : "SECONDARY"      
+      // }
 
-      if(refeicao.trim().length < 1){
-        Alert.alert('Nova Refeição', 'Nome precisa ser preenchida!');
+      if(name.trim().length < 1){
+        Alert.alert('Atualiza Refeição', 'Nome obrigatório!');
         return; 
       }
 
-      if(descricao.trim().length < 1){
-        Alert.alert('Nova Refeição', 'Descrição precisa ser preenchida!');
+      if(description.trim().length < 1){
+        Alert.alert('Atualiza Refeição', 'Descrição obrigatória!');
         return; 
       }
 
       if(date.trim().length < 1){ 
-        Alert.alert('Nova Refeição', 'Data precisa ser preenchida!');
+        Alert.alert('Atualiza Refeição', 'Data obrigatória!');
         return;
       }
 
-      if(hora.trim().length < 1){ 
-        Alert.alert('Nova Refeição', 'Hora precisa ser preenchida!');
+      if(hour.trim().length < 1){ 
+        Alert.alert('Atualiza Refeição', 'Hora obrigatória!');
         return;
       }
 
-      if(btnSim === 'DEFAULT' && btnNao === 'DEFAULT'){
-        Alert.alert('Nova Refeição', 'Está dentro da dieta precisa ser definido!');
-        return; 
-      }
+      // if(btnSim === 'DEFAULT' && btnNao === 'DEFAULT'){
+      //   Alert.alert('Nova Refeição', 'Está dentro da dieta precisa ser definido!');
+      //   return; 
+      // }
         
-      await refeicaoUpdate({title: date, titleAntiga: dataRefeicao, hora, id: idRefeicao, refeicao, descricao, dentroDieta, type:  dentroDieta  ? "PRIMARY" : "SECONDARY" });
+      // await mealCreate({title: date, hour, id: newId, name, description, diet });
 
-      // navigation.navigate('salvo', {type:  dentroDieta  ? "PRIMARY" : "SECONDARY"});
+      await refeicaoUpdate({title: date, titleAntiga: date, hour, id: id,    name, description, diet });
       
+      // navigation.navigate('salvo', {type:  dentroDieta  ? "PRIMARY" : "SECONDARY"});
+      if (diet==='S'){
+        navigation.navigate('good');
+      } else {
+        navigation.navigate('bad');
+      }
       
     } catch (error) {
       console.log(error);      
     }
   }  
 
-  function handleSetDentroDieta(){
-    if(btnSim === "DEFAULT"){
-      setBtnSim("PRIMARY");
-      setBtnNao("DEFAULT");
-      setDentroDieta(true);
-    }else{
-      setBtnSim("DEFAULT")
-      setDentroDieta(false);
-    }
+  function handleSetInDiet(){
+    setBtnYes('PRIMARY');
+    setBtnNo('DEFAULT');
+    setDiet('S');
   }
 
-  function handleSetForaDieta(){
-    if(btnNao === "DEFAULT"){
-      setBtnNao("SECONDARY");
-      setBtnSim("DEFAULT");
-      setDentroDieta(false);
-    }else{
-      setBtnNao("DEFAULT")
-      setDentroDieta(false);
-    }
+  function handleSetOutDiet(){
+    setBtnYes('DEFAULT');
+    setBtnNo('SECONDARY');
+    setDiet('N');    
   }
 
-  // const behavior = Platform.OS === "ios" ? "padding" : "padding";
   return (
     <Container>
       <Context>
         
-        {/* <CardHeaderNovaRefeicao label="Editar Refeição" type="GRAY" /> */}
-        
         <HeaderMeal infoText='Editar Refeição'/>
 
         <Form>
-          <KeyboardAvoidingView style={{flex: 1}} behavior="position" keyboardVerticalOffset={50}>
+
           <DivLinha>
             <Label>Nome</Label>
-            <Input value={refeicao} onChangeText={setRefeicao} />
+            <InputName 
+              value={name} 
+              onChangeText={setName} 
+            />
           </DivLinha>
 
           <DivLinha>
             <Label>Descrição</Label>
-            <Input style={{
-              height: 120
-            }} multiline={true} numberOfLines={4} value={descricao} onChangeText={setDescricao} />
+            <InputDescription
+              value={description}
+              onChangeText={setDescription} 
+              multiline={true}
+              numberOfLines={4}
+            />
+            
           </DivLinha>
+
+          <DivColuna>
           
-          <DivLinha2Colunas>
-            <DivLinhaMetade>
+            <DivLinha>
               <Label>Data</Label>
-              <TextInputMask 
-                style={styles.input}
+
+              <TextInputMask
                 type={'datetime'}
                 options={{
                   format: 'DD/MM/YYYY'
                 }}
-                placeholder={format(new Date(), 'dd/MM/yyyy')}
-                keyboardType={"default"}
                 value={date}
-                onChangeText={setDate}             
-            />
-            </DivLinhaMetade>
-            <DivLinhaMetade>
-              <Label>Hora</Label>
-              <TextInputMask 
+                onChangeText={setDate}
                 style={styles.input}
+              />
+
+            </DivLinha> 
+
+            <DivLinha>
+              <Label>Hora</Label>
+              
+              <TextInputMask
                 type={'datetime'}
                 options={{
-                  format: 'HH:MM'
+                  format: 'HH:mm'
                 }}
-                placeholder={format(new Date(), 'HH:MM')}
-                keyboardType={"default"}
-                value={hora}
-                onChangeText={setHora}             
-            />
-            </DivLinhaMetade>          
-          </DivLinha2Colunas>
+                value={hour}
+                onChangeText={setHour}
+                style={styles.input}
+              />
+            </DivLinha> 
+
+          </DivColuna> 
 
           <DivLinha>
-            <Label>Está dentro da dieta?</Label> 
-            <DivLinha2ColunasSemMargem>
-              <DivLinhaMetade>
-                <BtnDieta type={btnSim} onPress={handleSetDentroDieta}>
-                <CirculoStatus type="PRIMARY" />
-                  <Label>Sim</Label>
-                </BtnDieta>              
-              </DivLinhaMetade>
-              <DivLinhaMetade>
-                <BtnDieta type={btnNao} onPress={handleSetForaDieta}>
-                <CirculoStatus type="SECONDARY" />
-                  <Label>Não</Label>  
-                </BtnDieta>              
-              </DivLinhaMetade>
-            </DivLinha2ColunasSemMargem>
+            <Label>Está dentro da dieta?</Label>
           </DivLinha>
 
-          </KeyboardAvoidingView>
+          <DivLinha>
+
+            <DivColuna>
+
+              <BtnDietaSim
+                type={btnYes}
+                onPress={handleSetInDiet}
+              >
+              
+                <Status source={statusyesPng} />
+                <Label>  Sim  </Label>
+
+              </BtnDietaSim>
+
+              <BtnDietaNao
+                type={btnNo}
+                onPress={handleSetOutDiet}
+              >
+              
+                <Status source={statusnoPng} />
+                <Label>  Não  </Label>
+              </BtnDietaNao>
+
+              
+            </DivColuna>
+
+          </DivLinha>
+
         </Form>
       </Context>
-      <BtnAddRefeicao onPress={handleAddRefeicao}>
-        <TextBtnRefeicao>Salvar alterações</TextBtnRefeicao>
+
+      <BtnAddRefeicao onPress={handleUpdateMeal}>
+        <TextBtnRefeicao>Salvar Alterações</TextBtnRefeicao>
       </BtnAddRefeicao>
+
     </Container>
   );  
 }
 
 const styles = StyleSheet.create({
-  input:{
-    width: '100%',
-    height: 48,
+  input: {
+    height: 60,
+    width:150,
+    margin: 0,
+    borderWidth: 0.5,
     borderRadius: 6,
-    fontSize: THEME.FONT_SIZE.BODY_M,
-    fontFamily: THEME.FONT_FAMILY.REGULAR,
-    color: THEME.COLORS.BASE.GRAY[100],
-    padding: 14,
-    borderColor: THEME.COLORS.BASE.GRAY[500],
-    borderWidth: 1,
-    marginTop: 20,
-
-  }
-})
+    padding: 16
+  },
+});

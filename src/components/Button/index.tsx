@@ -1,21 +1,23 @@
+import { MaterialIcons } from '@expo/vector-icons';
+
 import { Container, 
          ButtonTexto,
-         Img } from "./styles";
-
-import editPng from '@assets/edit.png';
-import trashPng from '@assets/trash.png';
+         Icon } from "./styles";
 
 type Props = {
   oTexto: string;
   type?: string;
+  icon: keyof typeof MaterialIcons.glyphMap;
 }  
 
-export function Button({ oTexto, type, ...rest }: Props ){
+export function Button({ oTexto, type, icon, ...rest }: Props ){
   return(
-    <Container
-      {...rest}
-    >
-      <ButtonTexto>
+    <Container type={type} {...rest}>
+      <Icon 
+        name={icon}
+        type={type}
+      />
+      <ButtonTexto type={type}>
          {oTexto}
       </ButtonTexto>
     </Container>

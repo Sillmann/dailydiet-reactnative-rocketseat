@@ -25,6 +25,7 @@ export function ListMeal({hour, id, name, type, ...rest} : Props){
 
   async function handleEditarRefeicao(id: number){
     
+    console.log('teste');
     let dataRefeicao: string = "";
     let refeicaoSelecionada = {};
     const refeicoes = await mealGetAll();
@@ -48,15 +49,15 @@ export function ListMeal({hour, id, name, type, ...rest} : Props){
     //console.log('refeicoesFiltradas', refeicoesFiltradas);
     // console.log('dataRefeicao', dataRefeicao);
     // console.log('refeicaoSelecionada', refeicaoSelecionada);
-    // console.log('refeicaoSelecionadaDescricao', refeicaoSelecionada?.descricao);
+    //console.log('refeicaoSelecionadaDescricao', refeicaoSelecionada?.description);
 
     navigation.navigate('detmeal', {
-      id: id,
-      title: dataRefeicao,
-      name: refeicaoSelecionada.name,
-      description: refeicaoSelecionada.description,
-      hour: refeicaoSelecionada.hour,
-      diet: refeicaoSelecionada.diet
+      pId: id,
+      pTitle: dataRefeicao,
+      pName: refeicaoSelecionada.name,
+      pDescription: refeicaoSelecionada.description,
+      pHour: refeicaoSelecionada.hour,
+      pDiet: refeicaoSelecionada.diet
     });
     
   }
