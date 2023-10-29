@@ -27,10 +27,9 @@ import { Container,
         } from "./styles";
 
 type RouteParamsProps = {
-    pId: number;
-    pTitle: string;
     pName: string;
     pDescription: string;
+    pDate: string;
     pHour: string;
     pDiet: string;
 }
@@ -39,7 +38,7 @@ export function DetMeal(){
 
   const navigation = useNavigation();
   const route = useRoute();
-  const { pId, pTitle, pName, pDescription, pHour, pDiet } = route.params as RouteParamsProps;  
+  const { pName, pDescription, pDate, pHour, pDiet } = route.params as RouteParamsProps;  
 
   function handleRefeicaoRemove(){
     Alert.alert('Remover', 'Deseja remover a refeicao?',
@@ -52,20 +51,17 @@ export function DetMeal(){
 
   async function handleRefeicaoRemoveConfirmed(){
 
-    await refeicaoRemoveById(pId, pTitle);
+    await refeicaoRemoveById(pDate, pHour);
     navigation.navigate('home');
   }
 
   function handleEditarRefeicao(){
     navigation.navigate('editmeal', {
-      pId: pId,
-      pTitle: pTitle, 
       pName: pName,
       pDescription: pDescription,
+      pDate: pDate, 
       pHour: pHour,
       pDiet: pDiet
-      // ,
-      // typeRefeicao: dentroDieta ? 'PRIMARY' : 'SECONDARY'
     });  
   }
 
@@ -79,7 +75,7 @@ export function DetMeal(){
             <Title>{pName}</Title>
             <SubTitle>{pDescription}</SubTitle>
             <Label>Data e hora</Label>
-            <SubTitle>{pTitle} às {pHour}</SubTitle>
+            <SubTitle>{pDate} às {pHour}</SubTitle>
             
             <Diet>
               <ImgDiet type={pDiet}/>
@@ -103,18 +99,6 @@ export function DetMeal(){
             icon='delete-forever'
           />
 
-          {/* <BtnEditarExcluir type="PRIMARY" onPress={handleEditarRefeicao}>
-            <ViewBtnInterno>
-              <IconPencilSimpleLine type="PRIMARY" />
-              <TextBtn type="PRIMARY">Editar refeição</TextBtn>
-            </ViewBtnInterno>
-          </BtnEditarExcluir>
-          <BtnEditarExcluir type="DEFAULT" onPress={handleRefeicaoRemove}>
-          <ViewBtnInterno>
-              <IconTrash type="SECONDARY" />
-              <TextBtn type="SECONDARY">Excluir refeição</TextBtn>
-            </ViewBtnInterno>
-          </BtnEditarExcluir> */}
         </ListButtons>
 
       </Context>

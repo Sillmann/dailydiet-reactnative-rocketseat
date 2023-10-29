@@ -1,8 +1,7 @@
-// import AsyncStorage from "@react-native-async-storage/async-storage";
+import { TouchableOpacityProps } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { mealGetAll } from "@storage/refeicao/mealGetAll";
-// import { IDENTIFICADOR_COLLECTION, REFEICOES_COLLECTION } from "@storage/storageConfig";
-import { TouchableOpacityProps, ViewProps } from "react-native";
+import { getMeal } from "@storage/refeicao/getMeal";
 
 import { Container, 
          LineVertical, 
@@ -12,58 +11,64 @@ import { Container,
          TextNomeRefeicao } from "./style";
 
 type Props = TouchableOpacityProps & {
-  id: number;
+  date: string;
   hour: string;
   name: string;
   type?: statusRefeicaoStyleProps;  
 
 }
 
-export function ListMeal({hour, id, name, type, ...rest} : Props){
+export function ListMeal({date, hour, name, type, ...rest} : Props){
 
   const navigation = useNavigation();
 
-  async function handleEditarRefeicao(id: number){
+  async function handleEditarRefeicao(dateTime: string){
     
-    console.log('teste');
     let dataRefeicao: string = "";
-    let refeicaoSelecionada = {};
-    const refeicoes = await mealGetAll();
+    // let refeicaoSelecionada = {};
+    // const refeicoes = await mealGetAll();
+    const refeicoes = await getMeal(dateTime);
     const newRefeicoes = JSON.stringify(refeicoes);
-    // console.log('refeicoes', newRefeicoes);
+
+    console.log('newRefeicoes');
+    console.log(newRefeicoes);
     
-    const refeicoesFiltradas = refeicoes.map(refeicao => {
-      return refeicao.data.filter(refeicaoData => refeicaoData.id !== id);
-    });
+    const refeicaoSelecionada = newRefeicoes;
+
+    // const mealFreeze = Object.freeze(newRefeicoes);
+    // console.log(mealFreeze.description);
+
+    // const refeicoesFiltradas = refeicoes.map(refeicao => {
+    //   return refeicao.data.filter(refeicaoData => refeicaoData.id !== id);
+    // });
     
-    refeicoes.forEach(refeicao => {
-      refeicao.data.forEach(refeicaoData => {
-        if(refeicaoData.id === id){
-          dataRefeicao = refeicao.title; 
-          refeicaoSelecionada = refeicaoData;
-          return;
-        }
-      })
-    });    
+    // refeicoes.forEach(refeicao => {
+    //   refeicao.data.forEach(refeicaoData => {
+    //     if(refeicaoData.id === id){
+    //       dataRefeicao = refeicao.title; 
+    //       refeicaoSelecionada = refeicaoData;
+    //       return;
+    //     }
+    //   })
+    // });    
     
     //console.log('refeicoesFiltradas', refeicoesFiltradas);
     // console.log('dataRefeicao', dataRefeicao);
-    // console.log('refeicaoSelecionada', refeicaoSelecionada);
+    //console.log('refeicaoSelecionada', JSON.parse(refeicaoSelecionada).name);
     //console.log('refeicaoSelecionadaDescricao', refeicaoSelecionada?.description);
 
     navigation.navigate('detmeal', {
-      pId: id,
-      pTitle: dataRefeicao,
-      pName: refeicaoSelecionada.name,
-      pDescription: refeicaoSelecionada.description,
-      pHour: refeicaoSelecionada.hour,
-      pDiet: refeicaoSelecionada.diet
+      pName: JSON.parse(refeicaoSelecionada).name,
+      pDescription: JSON.parse(refeicaoSelecionada).description,
+      pDate: JSON.parse(refeicaoSelecionada).date,
+      pHour: JSON.parse(refeicaoSelecionada).hour,
+      pDiet: JSON.parse(refeicaoSelecionada).diet
     });
     
   }
 
   return (
-    <Container onPress={() => handleEditarRefeicao(id)}>
+    <Container onPress={() => handleEditarRefeicao(`${ date }-${ hour }`)}>
       <TextHora>{hour}</TextHora>
       <LineVertical />
       <TextNomeRefeicao>{name}</TextNomeRefeicao>

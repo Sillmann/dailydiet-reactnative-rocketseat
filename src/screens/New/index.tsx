@@ -46,16 +46,16 @@ export function New(){
 
   async function handleAddRefeicao(){
     try {
-      const newId = await getNewIdRefeicao();
+      // const newId = await getNewIdRefeicao();
   
-      const dados = {
-            id: newId,
-            name,
-            description,
-            date,
-            hour,
-            diet
-        }      
+      // const dados = {
+      //       // id: newId,
+      //       name,
+      //       description,
+      //       date,
+      //       hour,
+      //       diet
+      //   }      
 
       if(name.trim().length < 1){
         Alert.alert('Nova Refeição', 'Nome obrigatório!');
@@ -83,7 +83,7 @@ export function New(){
       }
 
   
-      await mealCreate({title: date, hour, id: newId, name, description, diet });
+      await mealCreate({name, description, date, hour, diet });
 
       if (diet==='S'){
         navigation.navigate('good');
@@ -172,10 +172,7 @@ export function New(){
             <Label>Está dentro da dieta?</Label>
           </DivLinha>
 
-          {/* <DivLinha> */}
-
           <DivColuna>
-
             
               <BtnDietaSim
                 type={btnYes}
@@ -199,17 +196,14 @@ export function New(){
               
           </DivColuna>
 
-          {/* </DivLinha> */}
-
-
         </Form>
 
-
-
       </Context>
+
       <BtnAddRefeicao onPress={handleAddRefeicao}>
         <TextBtnRefeicao>Cadastrar refeição</TextBtnRefeicao>
       </BtnAddRefeicao>
+      
     </Container>
   );  
 }

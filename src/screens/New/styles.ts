@@ -89,7 +89,7 @@ export const BtnDietaSim = styled.TouchableOpacity<Props>`
   height: 50px;
   
   background-color: ${({theme, type}) => 
-    type === "PRIMARY" ? theme.COLORS.BASE.GRAY[600] : theme.COLORS.BASE.WHITE}; 
+    type === "PRIMARY" ? theme.COLORS.BRAND.GREEN.MID : theme.COLORS.BASE.WHITE}; 
 
   top: 0;
   flex-direction: row;
@@ -102,7 +102,7 @@ export const BtnDietaNao = styled.TouchableOpacity<Props>`
   height: 50px;
 
   background-color: ${({theme, type}) => 
-    type === 'SECONDARY' ? theme.COLORS.BRAND.RED.LIGHT : theme.COLORS.BASE.WHITE}; 
+    type === 'SECONDARY' ? theme.COLORS.BRAND.RED.MID : theme.COLORS.BASE.WHITE}; 
 
   top: 0;
   flex-direction: row;

@@ -10,10 +10,11 @@ import { refeicaoGetEstatisticas } from "@storage/refeicao/refeicaoGetEstatistic
 import { Container, ContainerMeat, Title } from "./styles";
 
 type MeatProps = {
-  qtdRefeicoes: number;
-  qtdRefeicoesDentro: number;
-  qtdRefeicoesFora: number; 
-  percentagemDentroDieta: number;
+  amount: number;
+  amountIn: number;
+  amountOut: number; 
+  percent: number;
+  seq: number;
 }
 
 export function Home(){
@@ -26,7 +27,8 @@ export function Home(){
   }
 
   function handleStatistics(){
-    navigation.navigate('statistics', { percentagem: statistic?.percentagemDentroDieta } )
+    // navigation.navigate('statistics', { percentagem: statistic?.percentagemDentroDieta } )
+    navigation.navigate('statistics')
   }
 
   useFocusEffect(useCallback(() => {
@@ -43,8 +45,8 @@ export function Home(){
       <ViewHeader/>
 
       <ViewStatistic
-        percentagem={statistic?.percentagemDentroDieta ? statistic?.percentagemDentroDieta : 0}  
-        type={statistic?.percentagemDentroDieta >= 50 ? 'PRIMARY' : 'SECONDARY'} 
+        percentagem={statistic?.percent ? statistic?.percent : 0}  
+        type={statistic?.percent >= 50 ? 'PRIMARY' : 'SECONDARY'} 
         onPress={handleStatistics}/>
       
       <ContainerMeat>
@@ -54,8 +56,9 @@ export function Home(){
         </Title>
 
         <Button
-          oTexto="+ Nova Refeição"
+          oTexto="  Nova Refeição  "
           onPress={handleNew}
+          icon='add'
         />
 
       </ContainerMeat>

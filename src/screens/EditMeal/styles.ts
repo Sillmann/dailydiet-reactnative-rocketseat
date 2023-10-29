@@ -27,14 +27,14 @@ export const Form = styled.ScrollView`
 `;
 
 export const DivLinha = styled.View`
-  margin-top: 24px;
+  margin-top: 18px;
 `;
 
 export const DivColuna = styled.View`
+  margin-top: 0px;
   flex: 1;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 0px;
 `;
 
 export const Label = styled.Text`
@@ -46,6 +46,7 @@ export const Label = styled.Text`
 `;
 
 export const InputName = styled.TextInput`
+  height: 50px;
   border-radius: 6px;
   padding: 16px;
   border: solid 0.5px;
@@ -60,7 +61,7 @@ export const InputDescription = styled.TextInput`
   border: solid 0.5px;
   margin: 0px;
   width: 100%; 
-  height: 120px;
+  height: 100px;
   font-size: ${({ theme })=>theme.FONT_SIZE.BODY_S}px;  
 `;
 
@@ -88,7 +89,7 @@ export const BtnDietaSim = styled.TouchableOpacity<Props>`
   height: 50px;
   
   background-color: ${({theme, type}) => 
-    type === "PRIMARY" ? theme.COLORS.BASE.GRAY[600] : theme.COLORS.BASE.WHITE}; 
+    type === "PRIMARY" ? theme.COLORS.BRAND.GREEN.MID : theme.COLORS.BASE.WHITE}; 
 
   top: 0;
   flex-direction: row;
@@ -101,7 +102,7 @@ export const BtnDietaNao = styled.TouchableOpacity<Props>`
   height: 50px;
 
   background-color: ${({theme, type}) => 
-    type === "SECONDARY" ? theme.COLORS.BRAND.RED.LIGHT : theme.COLORS.BASE.WHITE}; 
+    type === "SECONDARY" ? theme.COLORS.BRAND.RED.MID : theme.COLORS.BASE.WHITE}; 
 
   top: 0;
   flex-direction: row;

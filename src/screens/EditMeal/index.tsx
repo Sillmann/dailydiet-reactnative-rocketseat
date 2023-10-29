@@ -1,7 +1,9 @@
 import { useState } from "react";
+
 import { StyleSheet, 
          Alert } from "react-native";
-import { refeicaoUpdate } from "@storage/refeicao/refeicaoUpdate";
+
+import { mealUpdate } from "@storage/refeicao/mealUpdate";
 
 import { TextInputMask } from "react-native-masked-text";
 
@@ -41,7 +43,6 @@ export function EditMeal(){
 
   const navigation = useNavigation();
   const route = useRoute();
-  // const { idRefeicao, dataRefeicao, nomeRefeicao, descricaoRefeicao, horaRefeicao, dentroDietaRefeicao, typeRefeicao } = route.params as RouteParamsProps;  
   const { pId, pTitle, pName, pDescription, pHour, pDiet } = route.params as RouteParamsProps;  
 
   const [name, setName] = useState(pName);
@@ -55,15 +56,6 @@ export function EditMeal(){
   async function handleUpdateMeal(){
     try {
       
-      // const dados = {
-      //     id: idRefeicao,
-      //     hora, 
-      //     refeicao, 
-      //     descricao,
-      //     dentroDieta,
-      //     type: dentroDieta  ? "PRIMARY" : "SECONDARY"      
-      // }
-
       if(name.trim().length < 1){
         Alert.alert('Atualiza Refeição', 'Nome obrigatório!');
         return; 
@@ -84,16 +76,18 @@ export function EditMeal(){
         return;
       }
 
-      // if(btnSim === 'DEFAULT' && btnNao === 'DEFAULT'){
-      //   Alert.alert('Nova Refeição', 'Está dentro da dieta precisa ser definido!');
-      //   return; 
-      // }
-        
-      // await mealCreate({title: date, hour, id: newId, name, description, diet });
+      if(btnYes === 'DEFAULT' && btnNo === 'DEFAULT'){
+        Alert.alert('Atualiza Refeição', 'Obrigatório definir Dentro ou Fora da Dieta!');
+        return; 
+      }
 
-      await refeicaoUpdate({title: date, titleAntiga: date, hour, id: id,    name, description, diet });
+      await mealUpdate({title: date, 
+                        id: pId,    
+                        name, 
+                        description, 
+                        hour, 
+                        diet });
       
-      // navigation.navigate('salvo', {type:  dentroDieta  ? "PRIMARY" : "SECONDARY"});
       if (diet==='S'){
         navigation.navigate('good');
       } else {
@@ -181,35 +175,32 @@ export function EditMeal(){
             <Label>Está dentro da dieta?</Label>
           </DivLinha>
 
-          <DivLinha>
+          <DivColuna>
 
-            <DivColuna>
+            <BtnDietaSim
+              type={btnYes}
+              onPress={handleSetInDiet}
+            >
+            
+              <Status source={statusyesPng} />
+              <Label>  Sim  </Label>
 
-              <BtnDietaSim
-                type={btnYes}
-                onPress={handleSetInDiet}
-              >
-              
-                <Status source={statusyesPng} />
-                <Label>  Sim  </Label>
+            </BtnDietaSim>
 
-              </BtnDietaSim>
+            <BtnDietaNao
+              type={btnNo}
+              onPress={handleSetOutDiet}
+            >
+            
+              <Status source={statusnoPng} />
+              <Label>  Não  </Label>
+            </BtnDietaNao>
 
-              <BtnDietaNao
-                type={btnNo}
-                onPress={handleSetOutDiet}
-              >
-              
-                <Status source={statusnoPng} />
-                <Label>  Não  </Label>
-              </BtnDietaNao>
-
-              
-            </DivColuna>
-
-          </DivLinha>
+            
+          </DivColuna>
 
         </Form>
+        
       </Context>
 
       <BtnAddRefeicao onPress={handleUpdateMeal}>

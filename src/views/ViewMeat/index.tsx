@@ -1,10 +1,11 @@
-import { ListMeal } from "@components/ListMeal";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { IDENTIFICADOR_COLLECTION } from "@storage/storageConfig";
-import { useFocusEffect } from "@react-navigation/native";
-import { mealGetAll } from "@storage/refeicao/mealGetAll";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { SectionList } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
+
+import { ListMeal } from "@components/ListMeal";
+import { mealGetAll } from "@storage/refeicao/mealGetAll";
+import { getSection } from "@storage/refeicao/getSection";
+
 import { Container, DataRefeicao } from "./styles";
 
 
@@ -26,13 +27,20 @@ export function ViewMeat(){
 
   try {
     async function fetchRefeicoes(){
-      const dataFile = await mealGetAll();
+      // const dataFile = await mealGetAll();
 
-      dataFile.map(dado => {
-        dado.data.sort((a,b) => a.hour < b.hour)
-      })
-      setDataMeals(dataFile);
-    }    
+      // dataFile.map(dado => {
+      //   dado.data.sort((a,b) => a.hour < b.hour)
+      // })
+      // setDataMeals(dataFile);
+      // console.log(dataFile);
+      // [{"data": [[Object]], "title": "28/10/2023"}, {"data": [[Object]], "title": "28/10/2023"}]
+
+      const allMealsInSection = await getSection();
+
+			setDataMeals(allMealsInSection);
+    }
+
     useFocusEffect(useCallback(() => {
       fetchRefeicoes();
     },[]));
@@ -47,7 +55,7 @@ export function ViewMeat(){
         sections={dataMeals}
         keyExtractor={(item, index) => item.hour + item.name + index}
         renderItem={({ item }) => 
-          <ListMeal hour={item.hour} id={item.id} name={item.name} type={item.diet} />                 
+          <ListMeal date={item.date} hour={item.hour} name={item.name} type={item.diet} />                 
         }
         renderSectionHeader={({section: {title} }) => (
           <DataRefeicao>{title.replace('/','.').replace('/','.')}</DataRefeicao>

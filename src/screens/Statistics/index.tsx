@@ -11,16 +11,16 @@ import { Container,
          Column, 
          Title } from "./styles";
 
-type RoutesParamsProps = {
-  percentagem: number;
-}
+// type RoutesParamsProps = {
+//   percentagem: number;
+// }
 
 type RefeicaoProps = {
-  qtdRefeicoes: number;
-  qtdRefeicoesDentro: number;
-  qtdRefeicoesFora: number; 
-  percentagemDentroDieta: number;
-  melhorSequencia: number;
+  amount: number;
+  amountIn: number;
+  amountOut: number; 
+  percent: number;
+  seq: number;
 }
 
 export function Statistics(){
@@ -34,7 +34,7 @@ export function Statistics(){
   
   const route = useRoute();
 
-  const { percentagem } = route.params as RoutesParamsProps;
+  // const { percentagem } = route.params as RoutesParamsProps;
 
   useFocusEffect(useCallback(() => {
     handleGetEstatisticas();
@@ -47,7 +47,8 @@ export function Statistics(){
         infoText='Estatísticas'/>
 
       <HeaderPercent 
-        infoPercent={percentagem ? percentagem?.toFixed(2) : 0}
+        // infoPercent={percentagem ? percentagem?.toFixed(2) : 0}
+        infoPercent={estatisticas?.percent}
       /> 
 
       <Context>
@@ -55,30 +56,30 @@ export function Statistics(){
         <Title>Estatísticas gerais</Title>
         
         <ViewStatistics1 
-          infoNum={estatisticas?.melhorSequencia}
+          infoNum={estatisticas?.seq}
           infoText="melhor sequência de pratos dentro da dieta"
         />
 
         <ViewStatistics1 
-          infoNum={estatisticas?.qtdRefeicoes}
+          infoNum={estatisticas?.amount}
           infoText="refeições registradas"
         />
 
         <Column>
           <ViewStatistics2
-            infoNum={estatisticas?.qtdRefeicoesDentro} 
+            infoNum={estatisticas?.amountIn} 
             infoText="refeições dentro da dieta"
             color="GREEN"
           />
 
           <ViewStatistics2
-            infoNum={estatisticas?.qtdRefeicoesFora} 
+            infoNum={estatisticas?.amountOut} 
             infoText="refeições fora da dieta"
             color="RED"
           />
         </Column>
 
-]      </Context>
+      </Context>
     </Container>
   );
 
