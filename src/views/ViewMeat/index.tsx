@@ -14,10 +14,11 @@ type mealProps = {
   data: [
     { 
       id: number,
-      hour: string, 
       name: string, 
-      description: string;          
-      diet: boolean
+      description: string, 
+      date: string, 
+      hour: string, 
+      diet: string
     }
   ]
 }
@@ -27,18 +28,8 @@ export function ViewMeat(){
 
   try {
     async function fetchRefeicoes(){
-      // const dataFile = await mealGetAll();
-
-      // dataFile.map(dado => {
-      //   dado.data.sort((a,b) => a.hour < b.hour)
-      // })
-      // setDataMeals(dataFile);
-      // console.log(dataFile);
-      // [{"data": [[Object]], "title": "28/10/2023"}, {"data": [[Object]], "title": "28/10/2023"}]
-
       const allMealsInSection = await getSection();
-
-			setDataMeals(allMealsInSection);
+      setDataMeals(allMealsInSection);
     }
 
     useFocusEffect(useCallback(() => {
@@ -55,7 +46,7 @@ export function ViewMeat(){
         sections={dataMeals}
         keyExtractor={(item, index) => item.hour + item.name + index}
         renderItem={({ item }) => 
-          <ListMeal date={item.date} hour={item.hour} name={item.name} type={item.diet} />                 
+          <ListMeal id={item.id} name={item.name} description={item.description} date={item.date} hour={item.hour} type={item.diet} />                 
         }
         renderSectionHeader={({section: {title} }) => (
           <DataRefeicao>{title.replace('/','.').replace('/','.')}</DataRefeicao>

@@ -31,6 +31,10 @@ import { BtnAddRefeicao,
 
 
 type RouteParamsProps = {
+<<<<<<< HEAD
+=======
+  pId: number;
+>>>>>>> 58dc89cd23befc99d721e5f25fee370c39976a5a
   pName: string;
   pDescription: string;
   pDate: string;
@@ -42,8 +46,13 @@ export function EditMeal(){
 
   const navigation = useNavigation();
   const route = useRoute();
+<<<<<<< HEAD
   const { pName, pDescription, pDate, pHour, pDiet } = route.params as RouteParamsProps;  
+=======
+  const { pId, pName, pDescription, pDate, pHour, pDiet } = route.params as RouteParamsProps;  
+>>>>>>> 58dc89cd23befc99d721e5f25fee370c39976a5a
 
+  const [id, setId] = useState(pId);
   const [name, setName] = useState(pName);
   const [description, setDescription] = useState(pDescription);
   const [date, setDate] = useState(pDate);
@@ -80,7 +89,12 @@ export function EditMeal(){
         return; 
       }
 
+<<<<<<< HEAD
       await mealUpdate({name, 
+=======
+      await mealUpdate({id,
+                        name, 
+>>>>>>> 58dc89cd23befc99d721e5f25fee370c39976a5a
                         description, 
                         date, 
                         hour, 

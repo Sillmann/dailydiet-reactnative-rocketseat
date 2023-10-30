@@ -2,11 +2,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { REFEICOES_COLLECTION } from "@storage/storageConfig";
 
 type mealProps = {
+  id: number;
   name: string, 
   description: string;          
   date: string,
   hour: string, 
-  diet: boolean,
+  diet: string,
 }
 
 export async function mealGetByDate(date: string){

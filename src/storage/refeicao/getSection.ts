@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+<<<<<<< HEAD
 import { REFEICOES_COLLECTION } from "@storage/storageConfig";
 // import { MealStorageDTO } from './types/MealStorageDTO';
 // import { MealsSectionDTO } from './types/MealsSectionDTO';
@@ -25,8 +26,11 @@ import { REFEICOES_COLLECTION } from "@storage/storageConfig";
 
 // 	return 0;
 // }
+=======
+>>>>>>> 58dc89cd23befc99d721e5f25fee370c39976a5a
 
 type MealStorageDTO = {
+	id: number;
 	name: string;
 	description: string;
 	date: string;
@@ -39,6 +43,7 @@ export type MealsSectionDTO = {
 	data: MealStorageDTO[];
 }
 
+<<<<<<< HEAD
 type mealProps = {  
   id: number,
   name: string, 
@@ -72,10 +77,13 @@ function orderKeys(a: string, b: string) {
 }
 
 
+=======
+>>>>>>> 58dc89cd23befc99d721e5f25fee370c39976a5a
 export async function getSection() {
 	
 	try {
 
+<<<<<<< HEAD
 		const storage = await AsyncStorage.getItem(REFEICOES_COLLECTION);
     const storages: mealProps[] = storage ? JSON.parse(storage) : []; 		
 		console.log('storages');
@@ -127,10 +135,16 @@ export async function getSection() {
     // [["@dailyDiet:idrefeicao", "{\"id\":1}"], ["@dailyDiet:refeicoes-28/10/2023", "[{\"title\":\"28/10/2023\",\"data\":[{\"hour\":\"07:00\",\"id\":1,\"name\":\"Cafe\",\"description\":\"Xxxx\",\"diet\":\"S\",\"date\":\"28/10/2023\"}]}]"]]
 
     // let allMealsByDay: MealsSectionDTO[] = [];
+=======
+		const storage = await AsyncStorage.multiGet(knownKeys);
+
+    let allMealsByDay: MealsSectionDTO[] = [];
+>>>>>>> 58dc89cd23befc99d721e5f25fee370c39976a5a
 
 		// storage.map((value) => {
 		// 	const mealsByKey: MealStorageDTO[] = value[1] ? JSON.parse(value[1]) : [];
 			
+<<<<<<< HEAD
     //   console.log('mealsByKey');
     //   console.log(mealsByKey);
 
@@ -144,6 +158,15 @@ export async function getSection() {
 		// 		data: mealsByKey
 		// 	}]
 		// });
+=======
+			const key = mealsByKey[0].date;
+     
+			allMealsByDay = [...allMealsByDay, {
+				title: key,
+				data: mealsByKey
+			}]
+		});
+>>>>>>> 58dc89cd23befc99d721e5f25fee370c39976a5a
 
 		return allMealsByDay;
         

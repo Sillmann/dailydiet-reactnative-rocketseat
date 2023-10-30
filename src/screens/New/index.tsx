@@ -45,7 +45,11 @@ export function New(){
 
   async function handleAddRefeicao(){
     try {
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> 58dc89cd23befc99d721e5f25fee370c39976a5a
       if(name.trim().length < 1){
         Alert.alert('Nova Refeição', 'Nome obrigatório!');
         return; 
