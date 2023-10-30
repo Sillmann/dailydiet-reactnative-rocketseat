@@ -9,7 +9,6 @@ import { HeaderMeal } from '@components/HeaderMeal';
 import { TextInputMask } from "react-native-masked-text";
 import { mealCreate} from '@storage/refeicao/mealCreate';
 import { useNavigation } from "@react-navigation/native";
-import { getNewIdRefeicao } from "@storage/refeicao/getNewIdRefeicao";
 
 import statusyesPng from '@assets/statusyes.png';
 import statusnoPng from '@assets/statusno.png';
@@ -46,16 +45,6 @@ export function New(){
 
   async function handleAddRefeicao(){
     try {
-      // const newId = await getNewIdRefeicao();
-  
-      // const dados = {
-      //       // id: newId,
-      //       name,
-      //       description,
-      //       date,
-      //       hour,
-      //       diet
-      //   }      
 
       if(name.trim().length < 1){
         Alert.alert('Nova Refeição', 'Nome obrigatório!');
@@ -83,7 +72,11 @@ export function New(){
       }
 
   
-      await mealCreate({name, description, date, hour, diet });
+      await mealCreate({name, 
+                        description, 
+                        date, 
+                        hour, 
+                        diet });
 
       if (diet==='S'){
         navigation.navigate('good');

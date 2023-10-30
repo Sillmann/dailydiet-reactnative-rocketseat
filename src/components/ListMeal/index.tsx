@@ -11,14 +11,15 @@ import { Container,
          TextNomeRefeicao } from "./style";
 
 type Props = TouchableOpacityProps & {
+  id: number;
+  name: string;
+  description: string;
   date: string;
   hour: string;
-  name: string;
   type?: statusRefeicaoStyleProps;  
-
 }
 
-export function ListMeal({date, hour, name, type, ...rest} : Props){
+export function ListMeal({id, name, description, date, hour, type, ...rest} : Props){
 
   const navigation = useNavigation();
 
@@ -58,6 +59,7 @@ export function ListMeal({date, hour, name, type, ...rest} : Props){
     //console.log('refeicaoSelecionadaDescricao', refeicaoSelecionada?.description);
 
     navigation.navigate('detmeal', {
+      pId: JSON.parse(refeicaoSelecionada).id,
       pName: JSON.parse(refeicaoSelecionada).name,
       pDescription: JSON.parse(refeicaoSelecionada).description,
       pDate: JSON.parse(refeicaoSelecionada).date,

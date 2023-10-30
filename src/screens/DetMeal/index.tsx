@@ -1,13 +1,9 @@
-import { useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { StyleSheet, Alert } from "react-native";
 import { HeaderMeal } from '@components/HeaderMeal';
 import { Button } from '@components/Button';
 
-// import { TextInputMask } from "react-native-masked-text";
 import { refeicaoRemoveById } from "@storage/refeicao/refeicaoRemoveById";
-
-import editPng from '@assets/edit.png';
 
 import { Container, 
          Context, 
@@ -27,6 +23,7 @@ import { Container,
         } from "./styles";
 
 type RouteParamsProps = {
+    pId: number;
     pName: string;
     pDescription: string;
     pDate: string;
@@ -38,7 +35,7 @@ export function DetMeal(){
 
   const navigation = useNavigation();
   const route = useRoute();
-  const { pName, pDescription, pDate, pHour, pDiet } = route.params as RouteParamsProps;  
+  const { pId, pName, pDescription, pDate, pHour, pDiet } = route.params as RouteParamsProps;  
 
   function handleRefeicaoRemove(){
     Alert.alert('Remover', 'Deseja remover a refeicao?',
@@ -57,6 +54,7 @@ export function DetMeal(){
 
   function handleEditarRefeicao(){
     navigation.navigate('editmeal', {
+      pId: pId,
       pName: pName,
       pDescription: pDescription,
       pDate: pDate, 
