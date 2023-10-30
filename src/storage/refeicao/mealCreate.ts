@@ -1,108 +1,46 @@
-// import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { REFEICOES_COLLECTION } from "@storage/storageConfig";
-import { mealGetAll }     from "@storage/refeicao/mealGetAll";
-import { mealGetByDate } from '@storage/refeicao/mealGetByDate';
 
-
-type mealProps = {
-   name: string, 
+type mealProps = {  
+  id: number,
+  name: string, 
   description: string;          
   date: string,
   hour: string, 
   diet: boolean,
 }
 
-export async function mealCreate({ name, description, date, hour, diet }: mealProps){
+export async function mealCreate({ id, name, description, date, hour, diet }: mealProps){
   try {
-    
-    //  const allmeal = await mealGetAll();   
-    const allmeal = await mealGetByDate( date );   
 
-    // console.log('teste');
-   
-    // const newMeal = {
-    //   title,
-    //   data: [{
-    //     name,
-    //     description,
-    //     date,
-    //     hour,
-    //     diet
-    //   }]
-    // }
+    const storage = await AsyncStorage.getItem(REFEICOES_COLLECTION);
+    const storages: mealProps[] = storage ? JSON.parse(storage) : []; 
 
-    const newMeal = {
+    let newId = 0;
+
+    storages.map(item => {
+      if ( item.id > newId )
+        newId = item.id;
+    })
+
+    newId = newId + 1;
+
+    const newItem = {
+        id:newId,
         name,
         description,
         date,
         hour,
         diet
-    }
+      }
 
-    // if(allmeal.length === 0){
+    const newStorage = JSON.stringify( [...storages, newItem] );
+    console.log('newStorage');
+    console.log(newStorage);
 
-    //   const newMeal = {
-    //     title,
-    //     data: [{
-    //       hour,
-    //       id,
-    //       name,
-    //       description,
-    //       diet
-    //     }]
-    //   }
-    //   const storage = JSON.stringify([newMeal]);
-    //   await AsyncStorage.setItem(REFEICOES_COLLECTION, storage);    
-    // }else{
-    //   const existData = allmeal.filter(f => f.title === title);
-    //   if(existData.length > 0){
-    //     const items = allmeal.filter(a => a.title !== title);
-    //     let dataFiltered = allmeal.find(a => a.title === title);
-        
-    //     dataFiltered?.data.push({
-    //       hour,
-    //       id,
-    //       name,
-    //       description,
-    //       diet
-    //     })
-    //     // console.log('dataFiltered: ', dataFiltered[0]);
-        
-    //     const newMeals = [...items, dataFiltered];
-    //     // console.log(novasRefeicoes);
-    //     const storage = JSON.stringify(newMeals);
-    //     await AsyncStorage.setItem(REFEICOES_COLLECTION, storage);    
-        
-    //   }else{
-    //     const newMeal = {
-    //       title,
-    //       data: [{
-    //         hour,
-    //         id,
-    //         name,
-    //         description,
-    //         diet
-    //       }]
-    //     }
-        
-        const newDados = [...allmeal, newMeal];
-        const storage = JSON.stringify(newDados);
-        console.log(storage);
-        // await AsyncStorage.setItem(REFEICOES_COLLECTION, storage);           
-        await AsyncStorage.setItem(`${ REFEICOES_COLLECTION }-${ date }`, storage);           
-        
-    //   }
-
-    // }
-    // const newId = {id: id};
-    // const idStorage = JSON.stringify(newId);
-    // await AsyncStorage.setItem(IDENTIFICADOR_COLLECTION, idStorage);
+    await AsyncStorage.setItem(REFEICOES_COLLECTION, newStorage);    
 
   } catch (error) {
     throw error;
   }
-
-  
-
 }

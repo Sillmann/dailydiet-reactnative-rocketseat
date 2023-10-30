@@ -31,10 +31,9 @@ import { BtnAddRefeicao,
 
 
 type RouteParamsProps = {
-  pId: number;
-  pTitle: string;
   pName: string;
   pDescription: string;
+  pDate: string;
   pHour: string;
   pDiet: string;
 }
@@ -43,11 +42,11 @@ export function EditMeal(){
 
   const navigation = useNavigation();
   const route = useRoute();
-  const { pId, pTitle, pName, pDescription, pHour, pDiet } = route.params as RouteParamsProps;  
+  const { pName, pDescription, pDate, pHour, pDiet } = route.params as RouteParamsProps;  
 
   const [name, setName] = useState(pName);
   const [description, setDescription] = useState(pDescription);
-  const [date, setDate] = useState(pTitle);
+  const [date, setDate] = useState(pDate);
   const [hour, setHour] = useState(pHour);
   const [diet, setDiet] = useState(pDiet);
   const [btnYes, setBtnYes] = useState(pDiet === 'S' ?"PRIMARY" : "DEFAULT");;
@@ -81,12 +80,11 @@ export function EditMeal(){
         return; 
       }
 
-      await mealUpdate({title: date, 
-                        id: pId,    
-                        name, 
+      await mealUpdate({name, 
                         description, 
+                        date, 
                         hour, 
-                        diet });
+                        diet});
       
       if (diet==='S'){
         navigation.navigate('good');
