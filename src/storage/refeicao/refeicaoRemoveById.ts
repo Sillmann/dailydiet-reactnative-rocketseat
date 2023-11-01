@@ -1,45 +1,31 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { //IDENTIFICADOR_COLLECTION, 
-          REFEICOES_COLLECTION } from "@storage/storageConfig";
-import { mealGetAll } from "./mealGetAll";
+import { REFEICOES_COLLECTION } from "@storage/storageConfig";
 
-export async function  refeicaoRemoveById(id: number, title: string){
+type mealProps = {
+  id: number,
+  name: string, 
+  description: string;          
+  date: string,
+  hour: string, 
+  diet: boolean,
+}
+
+export async function  refeicaoRemoveById(id: number){
 
   try {
 
-    const storage = await mealGetAll();
+    console.log('id');
+    console.log(id);
 
-    const filtered = storage.filter( item  => item.title !== title);
+    const storage = await AsyncStorage.getItem(REFEICOES_COLLECTION);
+    const storages: mealProps[] = storage ? JSON.parse(storage) : []; 
 
-    const meals = JSON.stringify(filtered);
+    const filtered = storages.filter(item => item.id !== id)
 
-    await AsyncStorage.setItem(REFEICOES_COLLECTION, meals);
+    await AsyncStorage.setItem(REFEICOES_COLLECTION, JSON.stringify(filtered));
 
-  // const refeicoes = await mealGetAll();
-
-  // const refeicoesOutrasDatas = refeicoes.filter(refeicao => refeicao.title !== data);
-  // const refeicaoData = refeicoes.find(refeicao => refeicao.title === data);
-  // const refeicaoDataFiltrada = refeicaoData.data.filter(refeicao => refeicao.id !== id);
-
-  // if(refeicaoDataFiltrada.length > 0){
-
-  //   const objDataFiltrada = {
-  //     title: data,
-  //     data: refeicaoDataFiltrada
-  //   }
-
-  //   const newRefeicao = [...refeicoesOutrasDatas, objDataFiltrada];
-    
-  //   const storage = JSON.stringify(newRefeicao);
-  //   await AsyncStorage.setItem(REFEICOES_COLLECTION, storage);
-  // }else{
-  //   const newRefeicao = refeicoesOutrasDatas;
-  //   const storage = JSON.stringify(newRefeicao);
-  //   await AsyncStorage.setItem(REFEICOES_COLLECTION, storage);
-
-  // }
-} catch (error) {
-  throw error;
-}
+  } catch (error) {
+    throw error;
+  }
     
 }

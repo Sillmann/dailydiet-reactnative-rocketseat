@@ -15,3 +15,13 @@ export const DataRefeicao = styled.Text`
   
   `};  
 `;
+
+export const Dates = styled.Text`
+  ${({ theme })=> css`
+    color:  ${theme.COLORS.BASE.GRAY[100]};
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    font-size: ${theme.FONT_SIZE.TITLE_S}px;
+  `}
+  margin-top: 24px;
+  margin-bottom: 8px;
+`

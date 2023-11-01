@@ -1,10 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { REFEICOES_COLLECTION } from "@storage/storageConfig";
-// import { mealGetAll } from "./mealGetAll";
-import { mealGetByDate } from '@storage/refeicao/mealGetByDate';
 
 type mealProps = {
+  id: number,
   name: string, 
   description: string;          
   date: string,
@@ -12,7 +11,8 @@ type mealProps = {
   diet: boolean,
 }
 
-export async function mealUpdate({ name, 
+export async function mealUpdate({ id,
+                                   name, 
                                    description, 
                                    date, 
                                    hour, 
@@ -20,18 +20,13 @@ export async function mealUpdate({ name,
 
   try {
 
-    const storage = await mealGetByDate( date );      
-    
-    const mealIndex = storage.findIndex((value) => value.hour === hour);
+    const storage = await AsyncStorage.getItem(REFEICOES_COLLECTION);
+    const storages: mealProps[] = storage ? JSON.parse(storage) : []; 
 
-		// if (mealIndex === -1) {
-		// 	await createMeal(updatedMeal);
-		// 	await removeMeal(dateTime);
-
-		// 	return;
-		// }
+    const mealIndex = storages.findIndex((value) => value.id === id);
 
     const newMeal = {
+      id,
       name,
       description,
       date,
@@ -39,45 +34,12 @@ export async function mealUpdate({ name,
       diet
     }  
 
-		storage[mealIndex] = newMeal;
+		storages[mealIndex] = newMeal;
 
-    console.log('newMeal');
-    console.log(newMeal);
+    // console.log('updateMeal');
+    // console.log(newMeal);
 
-		// AsyncStorage.setItem(`${ MEAL_COLLECTION }-${ date }`, JSON.stringify(dailyMeals));
-    await AsyncStorage.setItem(`${ REFEICOES_COLLECTION }-${ date }`, JSON.stringify(storage));           
-    
-
-
-        // const storage = await mealGetAll();
-       
-        // // console.log(storage);
-        // // [{"data": [[Object]], "title": "28/10/2023"}]
-
-        // storage.map(obj => {
-
-        //   obj.data.map(item => {
-
-        //     // console.log(item);
-        //     //{"description": "Feijoada ", "diet": "N", "hour": "12:00", "id": 2, "name": "Almoço "}
-        //     if (item.id === id) {
-              
-        //       obj.title = title,
-
-        //       item.hour = hour,
-        //       item.name = name,
-        //       item.description = description,
-        //       item.diet = diet
-
-        //     }
-
-        //   });
-          
-        // }); 
-        
-        // const meals = JSON.stringify(storage);
-
-        // await AsyncStorage.setItem(REFEICOES_COLLECTION, meals);              
+		await AsyncStorage.setItem(REFEICOES_COLLECTION, JSON.stringify(storages));           
       
   } catch (error) {
     throw error;

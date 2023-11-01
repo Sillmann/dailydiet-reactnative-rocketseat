@@ -48,7 +48,7 @@ export function DetMeal(){
 
   async function handleRefeicaoRemoveConfirmed(){
 
-    await refeicaoRemoveById(pDate, pHour);
+    await refeicaoRemoveById(pId);
     navigation.navigate('home');
   }
 
@@ -70,7 +70,7 @@ export function DetMeal(){
         <HeaderMeal infoText='Refeição'/>
 
         <Form>
-            <Title>{pName}</Title>
+            <Title>{pName}{pId}</Title>
             <SubTitle>{pDescription}</SubTitle>
             <Label>Data e hora</Label>
             <SubTitle>{pDate} às {pHour}</SubTitle>
