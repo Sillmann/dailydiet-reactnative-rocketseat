@@ -3,7 +3,7 @@ import { FlatList } from 'react-native';
 import { useFocusEffect } from "@react-navigation/native";
 
 import { ListMeal } from "@components/ListMeal";
-import { mealsRetrieve } from '@storage/refeicao/mealsRetrieve';
+import { storageMealGet } from '@storage/meal/storageMealGet';
 
 import { Container, DataRefeicao, Dates } from "./styles";
 
@@ -20,17 +20,13 @@ type Props = {
   meals: mealProps[];
 };
 
-export function ViewMeat(){
+export function CardMeat(){
   const [dataMeals, setDataMeals] = useState<mealProps[]>([]);
   const [ meals, setMeals ] = useState<mealProps[]>([]);
 
-  function handleNewMeal() {
-    // navigation.navigate('newmeal') 
-  }
-
   try {
     async function fetchRefeicoes(){
-      const allMealsInSection = await mealsRetrieve();
+      const allMealsInSection = await storageMealGet();
       setMeals(allMealsInSection);
     }
 
@@ -43,9 +39,8 @@ export function ViewMeat(){
   }
 
   function groupAndSortMealsByDate({ meals }: Props) {
-    // console.log('aqui');
-    // console.log({ meals });
-     const mealsByDate: { [date: string]: mealProps[] } = meals.reduce(
+
+    const mealsByDate: { [date: string]: mealProps[] } = meals.reduce(
        (acc: { [date: string]: mealProps[] }, meal) => {
         //  console.log('meal.date');
         //  console.log(meal.date);
@@ -75,9 +70,6 @@ export function ViewMeat(){
         dateaaa: date,
         meals,
       }));
-
-      console.log('meals');
-      console.log(meals);
 
      return sortedMealsByDatex;
   }

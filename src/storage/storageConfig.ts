@@ -1,6 +1,3 @@
-const REFEICOES_COLLECTION = '@dailyDiet:refeicoes';
-// const SEQUENCIADENTRO_COLLECTION = '@dailyDiet:sequencia';
-// const IDENTIFICADOR_COLLECTION = '@dailyDiet:idrefeicao';
-
+const REFEICOES_COLLECTION = '@dailyDiet:meal';
 
 export { REFEICOES_COLLECTION }//, SEQUENCIADENTRO_COLLECTION, IDENTIFICADOR_COLLECTION };

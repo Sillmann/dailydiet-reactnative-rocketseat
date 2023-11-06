@@ -10,12 +10,9 @@ type mealProps = {
   diet: boolean,
 }
 
-export async function  refeicaoRemoveById(id: number){
+export async function storageMealRemove(id: number){
 
   try {
-
-    console.log('id');
-    console.log(id);
 
     const storage = await AsyncStorage.getItem(REFEICOES_COLLECTION);
     const storages: mealProps[] = storage ? JSON.parse(storage) : []; 

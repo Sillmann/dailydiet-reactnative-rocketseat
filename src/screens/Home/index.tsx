@@ -2,11 +2,11 @@ import { useCallback, useState } from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 import { Button } from '@components/Button';
-import { ViewMeat } from "@views/ViewMeat";
-import { ViewStatistic } from "@views/ViewStatistic";
-import { ViewHeader } from "@views/ViewHeader";
+import { CardStatistic } from "@cards/CardStatistic";
+import { CardHeader } from "@cards/CardHeader";
+import { CardMeat } from "@cards/CardMeat";
 
-import { refeicaoGetEstatisticas } from "@storage/refeicao/refeicaoGetEstatisticas";
+import { storageMealStatistic } from "@storage/meal/storageMealStatistic";
 import { Container, ContainerMeat, Title } from "./styles";
 
 type MeatProps = {
@@ -22,7 +22,7 @@ export function Home(){
   const [statistic, setStatistic] = useState<MeatProps>()
   
   async function handleGetStatistics(){
-    const estatisticas = await refeicaoGetEstatisticas();
+    const estatisticas = await storageMealStatistic();
     setStatistic(prev => estatisticas);
   }
 
@@ -42,9 +42,9 @@ export function Home(){
   return (    
     <Container>
       
-      <ViewHeader/>
+      <CardHeader/>
 
-      <ViewStatistic
+      <CardStatistic
         percentagem={statistic?.percent ? statistic?.percent : 0}  
         type={statistic?.percent >= 50 ? 'PRIMARY' : 'SECONDARY'} 
         onPress={handleStatistics}/>
@@ -63,7 +63,7 @@ export function Home(){
 
       </ContainerMeat>
 
-      <ViewMeat />      
+      <CardMeat />      
 
     </Container>
   );

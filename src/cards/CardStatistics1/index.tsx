@@ -1,7 +1,4 @@
-// import { TouchableOpacityProps, View } from 'react-native';
 import { Container, 
-        //  cardEstatisticaStyleProps, 
-        //  IconArrowUpRight, 
          TextPercentagem, 
          DivTexts, 
          TextMensagem } from "./styles";
@@ -11,7 +8,7 @@ type Props = {
   infoText: string;
 }  
          
-export function ViewStatistics1({infoNum, infoText}: Props){
+export function CardStatistics1({infoNum, infoText}: Props){
   return (
     <Container>
       <DivTexts>

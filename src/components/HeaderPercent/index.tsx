@@ -1,12 +1,9 @@
 import { Alert, TouchableOpacityProps, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Container, 
-        //  IconArrowLeft, 
          TextPercentagem, 
          DivTexts, 
          TextMensagem, 
-        //  cardEstatisticaStyleIconeVoltarProps, 
-        //  AreaSegura, 
         //  BackButton 
         } from "./styles";
 
@@ -25,16 +22,12 @@ export function HeaderPercent({ infoPercent }: Props){
 
   return (
     <Container>
-      {/* <AreaSegura> */}
-      {/* <BackButton onPress={handleGoBack}>
-        <IconArrowLeft
-            type={type}        /> 
-      </BackButton>       */}
+      
       <DivTexts>
         <TextPercentagem>{infoPercent}%</TextPercentagem>
         <TextMensagem>das refeições dentro da dieta</TextMensagem>
       </DivTexts>
-      {/* </AreaSegura> */}
+      
     </Container>
   );
 }

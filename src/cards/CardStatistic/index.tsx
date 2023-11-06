@@ -6,7 +6,7 @@ type Props = TouchableOpacityProps & {
   percentagem: number;
 }
 
-export function ViewStatistic({percentagem, type = 'PRIMARY', ...rest}: Props){
+export function CardStatistic({percentagem, type = 'PRIMARY', ...rest}: Props){
   
   return (
     <Container type={type} {...rest}>

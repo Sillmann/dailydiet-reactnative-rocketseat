@@ -1,7 +1,14 @@
-import { Container, DivTextos, DivTexto1, DivTexto2, ImgBad } from './styles';
-import badPng from '@assets/bad.png';
-import { Button } from '@components/Button';
 import { useNavigation } from '@react-navigation/native';
+
+import { Button } from '@components/Button';
+
+import badPng from '@assets/bad.png';
+
+import { Container, 
+         DivTextos, 
+         DivTexto1, 
+         DivTexto2, 
+         ImgBad } from './styles';
 
 export function Bad() {
 

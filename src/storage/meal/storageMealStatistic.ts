@@ -1,6 +1,6 @@
-import { mealsRetrieve } from '@storage/refeicao/mealsRetrieve';
+import { storageMealGet } from '@storage/meal/storageMealGet';
 
-export async function refeicaoGetEstatisticas(){
+export async function storageMealStatistic(){
 
   let amount = 0;
   let amountIn = 0;
@@ -9,7 +9,7 @@ export async function refeicaoGetEstatisticas(){
   let seq = 0;
 
   try {
-    const allMeals = await mealsRetrieve();
+    const allMeals = await storageMealGet();
 
 		const mealsInsideTheDiet = allMeals.filter((meal) => meal.diet === 'S').length;
 

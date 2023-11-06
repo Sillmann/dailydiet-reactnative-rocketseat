@@ -10,8 +10,8 @@
       "@components/*": [
         "./src/components/*"
       ],
-      "@views/*": [
-        "./src/views/*"
+      "@cards/*": [
+        "./src/cards/*"
       ],
       "@routes/*": [
         "./src/routes/*"

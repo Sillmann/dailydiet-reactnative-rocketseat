@@ -10,7 +10,7 @@ type mealProps = {
   diet: string,
 }
 
-export async function mealCreate({ id, name, description, date, hour, diet }: mealProps){
+export async function storageMealAdd({ id, name, description, date, hour, diet }: mealProps){
   try {
 
     const storage = await AsyncStorage.getItem(REFEICOES_COLLECTION);
@@ -35,8 +35,6 @@ export async function mealCreate({ id, name, description, date, hour, diet }: me
       }
 
     const newStorage = JSON.stringify( [...storages, newItem] );
-    console.log('newStorage');
-    console.log(newStorage);
 
     await AsyncStorage.setItem(REFEICOES_COLLECTION, newStorage);    
 

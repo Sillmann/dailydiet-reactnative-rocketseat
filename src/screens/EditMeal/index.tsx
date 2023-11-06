@@ -3,7 +3,7 @@ import { useState } from "react";
 import { StyleSheet, 
          Alert } from "react-native";
 
-import { mealUpdate } from "@storage/refeicao/mealUpdate";
+import { storageMealUpdate } from "@storage/meal/storageMealUpdate";
 
 import { TextInputMask } from "react-native-masked-text";
 
@@ -82,12 +82,12 @@ export function EditMeal(){
         return; 
       }
 
-      await mealUpdate({id,
-                        name, 
-                        description, 
-                        date, 
-                        hour, 
-                        diet});
+      await storageMealUpdate({ id,
+                                name, 
+                                description, 
+                                date, 
+                                hour, 
+                                diet});
       
       if (diet==='S'){
         navigation.navigate('good');

@@ -1,14 +1,4 @@
-// import { SafeAreaView } from 'react-native-safe-area-context';
-
 import styled, {css} from "styled-components/native";
-
-// import { ArrowLeft } from 'phosphor-react-native';
-
-// export type cardEstatisticaStyleIconeVoltarProps = "PRIMARY" | "SECONDARY";
-
-// type Props = {
-//   type: cardEstatisticaStyleIconeVoltarProps;
-// }
 
 export const Container = styled.View`
   width: 100%;
@@ -16,27 +6,6 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.COLORS.BASE.GRAY[500]};    
   flex-direction: column; 
   `;
-
-// export const AreaSegura = styled(SafeAreaView)`
-//   flex: 1;
-//   height: 150px;
-// `;
-
-// export const BackButton = styled.TouchableOpacity`
-//   flex: 1;
-//   width: 50px;
-// `;
-
-// export const IconArrowLeft = styled(ArrowLeft).attrs<Props>(({ theme, type }) => ({
-//   size: 32,
-//   color: type === 'PRIMARY' ? theme.COLORS.BRAND.GREEN['DARK'] : theme.COLORS.BRAND.RED['DARK']
-// }))`
-//   position: absolute;
-//   left: 24px;
-//   top: 40px;
-//   width: 24px;
-//   height: 24px;
-// `;
 
 export const DivTexts = styled.View`
   flex: 1;

@@ -4,11 +4,14 @@ import { StyleSheet,
          Alert, 
         } from "react-native";
 
+import { TextInputMask } from "react-native-masked-text";
+
+import { useNavigation } from "@react-navigation/native";
+
 import { Container } from "@components/Loading/styles";
 import { HeaderMeal } from '@components/HeaderMeal';
-import { TextInputMask } from "react-native-masked-text";
-import { mealCreate} from '@storage/refeicao/mealCreate';
-import { useNavigation } from "@react-navigation/native";
+
+import { storageMealAdd } from '@storage/meal/storageMealAdd';
 
 import statusyesPng from '@assets/statusyes.png';
 import statusnoPng from '@assets/statusno.png';
@@ -69,13 +72,12 @@ export function New(){
         Alert.alert('Nova Refeição', 'Obrigatório definir Dentro ou Fora da Dieta!');
         return; 
       }
-
   
-      await mealCreate({name, 
-                        description, 
-                        date, 
-                        hour, 
-                        diet });
+      await storageMealAdd({name, 
+                            description, 
+                            date, 
+                            hour, 
+                            diet });
 
       if (diet==='S'){
         navigation.navigate('good');

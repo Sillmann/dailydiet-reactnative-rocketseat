@@ -11,15 +11,12 @@ export type MealProps = {
 };
 
 
-export async function mealsRetrieve(): Promise<MealProps[]> {
+export async function storageMealGet(): Promise<MealProps[]> {
 
   try {
     const storage = await AsyncStorage.getItem(REFEICOES_COLLECTION);
 
     const meals: MealProps[] = storage ? JSON.parse(storage) : [];
-
-    console.log('mealsRetrieve');
-    console.log(mealsRetrieve);
 
     return meals;
 

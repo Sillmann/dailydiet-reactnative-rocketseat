@@ -1,9 +1,9 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { StyleSheet, Alert } from "react-native";
+import { Alert } from "react-native";
 import { HeaderMeal } from '@components/HeaderMeal';
 import { Button } from '@components/Button';
 
-import { refeicaoRemoveById } from "@storage/refeicao/refeicaoRemoveById";
+import { storageMealRemove } from "@storage/meal/storageMealRemove";
 
 import { Container, 
          Context, 
@@ -14,12 +14,7 @@ import { Container,
          Diet,
          ImgDiet, 
          TextDiet,
-         ListButtons, 
-         BtnEditarExcluir, 
-         IconPencilSimpleLine, 
-         IconTrash, 
-         TextBtn, 
-         ViewBtnInterno, 
+         ListButtons 
         } from "./styles";
 
 type RouteParamsProps = {
@@ -48,7 +43,7 @@ export function DetMeal(){
 
   async function handleRefeicaoRemoveConfirmed(){
 
-    await refeicaoRemoveById(pId);
+    await storageMealRemove(pId);
     navigation.navigate('home');
   }
 

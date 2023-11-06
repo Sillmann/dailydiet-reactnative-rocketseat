@@ -11,12 +11,12 @@ type mealProps = {
   diet: boolean,
 }
 
-export async function mealUpdate({ id,
-                                   name, 
-                                   description, 
-                                   date, 
-                                   hour, 
-                                   diet  }: mealProps){
+export async function storageMealUpdate({ id,
+                                          name, 
+                                          description, 
+                                          date, 
+                                          hour, 
+                                          diet  }: mealProps){
 
   try {
 
@@ -35,9 +35,6 @@ export async function mealUpdate({ id,
     }  
 
 		storages[mealIndex] = newMeal;
-
-    // console.log('updateMeal');
-    // console.log(newMeal);
 
 		await AsyncStorage.setItem(REFEICOES_COLLECTION, JSON.stringify(storages));           
       

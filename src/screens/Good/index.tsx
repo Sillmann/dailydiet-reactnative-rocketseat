@@ -1,7 +1,14 @@
-import { Container, DivTextos, DivTexto1, DivTexto2, ImgGood } from './styles';
-import goodPng from '@assets/good.png';
-import { Button } from '@components/Button';
 import { useNavigation } from '@react-navigation/native';
+
+import { Button } from '@components/Button';
+
+import goodPng from '@assets/good.png';
+
+import { Container, 
+         DivTextos, 
+         DivTexto1, 
+         DivTexto2, 
+         ImgGood } from './styles';
 
 export function Good() {
 
