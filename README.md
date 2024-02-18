@@ -1,5 +1,6 @@
 # DailyDiet
 App elaborado para o curso de React Native da Rocketseat.
+
 Desenvolvido uma aplicação de cadastro de refeições, que contém as seguintes funcionalidades:
 - Adicionar uma nova refeição
 - Editar uma refeição
