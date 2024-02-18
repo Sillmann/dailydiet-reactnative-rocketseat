@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "dailyDiet",
-    "slug": "dailyDiet",
+    "name": "dailydiet",
+    "slug": "dailydiet",
     "privacy": "public",
     "platforms": [
       "ios",
@@ -14,7 +14,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#4BB37C"
+      "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -27,19 +27,22 @@
       "bundleIdentifier": "com.atomicapp.dailyDiet"
     },
     "android": {
-      "package": "com.atomicapp.dailyDiet",
+      "package": "com.ssilman.dailydiet",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#ffffff"
       },
       "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "plugins": [
+      "expo-font"
+    ],
     "extra": {
       "eas": {
-        "projectId": "9be996c7-c681-40d3-86ed-724a96d6e42f"
+        "projectId": "31868969-ba07-48bc-ad67-bc6a678cdbf3"
       }
     }
   }
